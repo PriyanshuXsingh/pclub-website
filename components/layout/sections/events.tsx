@@ -73,7 +73,9 @@ export const EventsSection = () => {
           {events.map((event, idx) => (
             <div
               key={event.id}
-              ref={(el) => (cardRefs.current[idx] = el)}
+              ref={(el) => {
+                cardRefs.current[idx] = el;
+              }}
               className={`relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group transition-all duration-500 ${activeId == event.id ? "scale-110" : ""}`}
               onMouseEnter={() => setActiveId(event.id)}
               onMouseLeave={() => setActiveId(null)}

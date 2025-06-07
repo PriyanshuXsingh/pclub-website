@@ -39,7 +39,7 @@ export const HeroSection = () => {
               </h1>
 
               <p className="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed">
-                We're more than just a club, we are a thriving community of
+                We&apos;re more than just a club, we are a thriving community of
                 innovators, creators, and problem-solvers.
               </p>
             </div>

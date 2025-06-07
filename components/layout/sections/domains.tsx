@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const DomainsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const sectionRef = useRef(null);
 
   const domains = [

@@ -2,18 +2,32 @@
 import React, { useState } from "react";
 import { Building2, Clock, Mail, Phone } from "lucide-react";
 
+type FormDataType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type FormErrorType = Partial<Record<keyof FormDataType, string>>;
+
+type InputType = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+>;
+
 export const ContactSection = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     firstName: "",
     lastName: "",
     email: "",
     subject: "Web Development",
     message: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrorType>({});
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: FormErrorType = {};
 
     if (!formData.firstName.trim() || formData.firstName.length < 2) {
       newErrors.firstName = "First name must be at least 2 characters";
@@ -32,14 +46,14 @@ export const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: InputType) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
 
-    if (errors[name]) {
+    if (name in errors) {
       setErrors((prev) => ({
         ...prev,
         [name]: "",
@@ -47,7 +61,7 @@ export const ContactSection = () => {
     }
   };
 
-  const handleSubmit = (e: HTMLFormElement) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validateForm()) {
@@ -75,7 +89,7 @@ export const ContactSection = () => {
             Get In Touch
           </h2>
 
-          <div className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {/* Name Fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -156,12 +170,12 @@ export const ContactSection = () => {
 
             {/* Submit Button */}
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="w-full bg-[#db6654] text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
             >
               Send Message
             </button>
-          </div>
+          </form>
         </div>
 
         {/* Contact Info - Right Side */}
@@ -173,7 +187,7 @@ export const ContactSection = () => {
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">Contact Us</h1>
             <p className="text-gray-300 text-lg leading-relaxed">
               We are passionate about innovation, luxury, and ready to
-              collaborate. Chats where you belong. Let's code, create and
+              collaborate. Chats where you belong. Let&apos;s code, create and
               conquer the world of technology together.
             </p>
           </div>

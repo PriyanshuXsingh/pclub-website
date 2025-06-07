@@ -68,9 +68,9 @@ export const AboutSection = () => {
             <p className="text-lg md:text-xl text-[#1a1a1a] leading-relaxed font-medium">
               AT PCLUB, WE BRING TECHNOLOGY TO LIFE THROUGH OPEN-SOURCE
               WORKSHOPS, ENGAGING SEMINARS, INTENSE HACKATHONS, AND A VARIETY OF
-              FUN TECH-BASED GAMES AND PROJECTS. WHETHER YOU'RE DIVING INTO YOUR
-              FIRST LINES OF CODE OR BUILDING YOUR NEXT BIG PROJECT, PCLUB IS
-              HERE TO SUPPORT YOUR JOURNEY.
+              FUN TECH-BASED GAMES AND PROJECTS. WHETHER YOU&apos;RE DIVING INTO
+              YOUR FIRST LINES OF CODE OR BUILDING YOUR NEXT BIG PROJECT, PCLUB
+              IS HERE TO SUPPORT YOUR JOURNEY.
             </p>
           </div>
         </div>
