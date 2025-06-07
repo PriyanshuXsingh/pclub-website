@@ -1,19 +1,15 @@
-import { BenefitsSection } from "@/components/layout/sections/benefits";
-import { CommunitySection } from "@/components/layout/sections/community";
+import { AboutSection } from "@/components/layout/sections/about";
 import { ContactSection } from "@/components/layout/sections/contact";
-import { FAQSection } from "@/components/layout/sections/faq";
-import { FeaturesSection } from "@/components/layout/sections/features";
+import { DomainsSection } from "@/components/layout/sections/domains";
+import { EventsSection } from "@/components/layout/sections/events";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { HeroSection } from "@/components/layout/sections/hero";
-import { PricingSection } from "@/components/layout/sections/pricing";
-import { ServicesSection } from "@/components/layout/sections/services";
-import { SponsorsSection } from "@/components/layout/sections/sponsors";
+import { ProjectsSection } from "@/components/layout/sections/projects";
 import { TeamSection } from "@/components/layout/sections/team";
-import { TestimonialSection } from "@/components/layout/sections/testimonial";
 
 export const metadata = {
-  title: "Shadcn - Landing template",
-  description: "Free Shadcn landing page for developers",
+  title: "P-Club, UIET",
+  description: "Programming club, UIET chandigarh, Panjab University",
   openGraph: {
     type: "website",
     url: "https://github.com/nobruf/shadcn-landing-page.git",
@@ -43,16 +39,12 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <SponsorsSection />
-      <BenefitsSection />
-      <FeaturesSection />
-      <ServicesSection />
-      <TestimonialSection />
+      <AboutSection />
+      <DomainsSection />
       <TeamSection />
-      <CommunitySection />
-      <PricingSection />
+      <ProjectsSection />
+      <EventsSection />
       <ContactSection />
-      <FAQSection />
       <FooterSection />
     </>
   );

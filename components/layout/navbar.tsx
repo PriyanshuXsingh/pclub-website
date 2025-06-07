@@ -1,5 +1,5 @@
 "use client";
-import { ChevronsDown, Github, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import React from "react";
 import {
   Sheet,
@@ -20,170 +20,188 @@ import {
 } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
-import { ToggleTheme } from "./toogle-theme";
 
 interface RouteProps {
   href: string;
   label: string;
 }
 
-interface FeatureProps {
+interface DomainProps {
   title: string;
   description: string;
 }
 
 const routeList: RouteProps[] = [
   {
-    href: "#testimonials",
-    label: "Testimonials",
+    href: "#about",
+    label: "About Us",
   },
   {
     href: "#team",
-    label: "Team",
+    label: "The Team",
   },
   {
-    href: "#contact",
-    label: "Contact",
-  },
-  {
-    href: "#faq",
-    label: "FAQ",
+    href: "#sessions",
+    label: "Upcoming Sessions",
   },
 ];
 
-const featureList: FeatureProps[] = [
+const domainList: DomainProps[] = [
   {
-    title: "Showcase Your Value ",
-    description: "Highlight how your product solves user problems.",
+    title: "Web Development",
+    description: "Frontend and Backend technologies, frameworks, and tools.",
   },
   {
-    title: "Build Trust",
-    description:
-      "Leverages social proof elements to establish trust and credibility.",
+    title: "Mobile Development",
+    description: "iOS and Android app development with modern frameworks.",
   },
   {
-    title: "Capture Leads",
+    title: "Data Science & AI",
     description:
-      "Make your lead capture form visually appealing and strategically.",
+      "Machine Learning, Data Analysis, and Artificial Intelligence.",
+  },
+  {
+    title: "Competitive Programming",
+    description: "Algorithm design, problem solving, and coding competitions.",
   },
 ];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
-      <Link href="/" className="font-bold text-lg flex items-center">
-        <ChevronsDown className="bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
-        Shadcn
-      </Link>
-      {/* <!-- Mobile --> */}
-      <div className="flex items-center lg:hidden">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Menu
-              onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer lg:hidden"
-            />
-          </SheetTrigger>
+    <header className="bg-[#2c2f4a] w-full top-0 sticky z-40 border-b border-[#3a3f5f]">
+      <div className="max-w-7xl mx-auto flex justify-between items-center p-4 px-6">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="font-bold text-lg flex items-center text-white"
+        >
+          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-2">
+            <span className="text-[#2c2f4a] font-bold text-sm">PC</span>
+          </div>
+          Club
+        </Link>
 
-          <SheetContent
-            side="left"
-            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
-          >
-            <div>
-              <SheetHeader className="mb-4 ml-4">
-                <SheetTitle className="flex items-center">
-                  <Link href="/" className="flex items-center">
-                    <ChevronsDown className="bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
-                    Shadcn
-                  </Link>
-                </SheetTitle>
-              </SheetHeader>
+        {/* Mobile Menu */}
+        <div className="flex items-center lg:hidden">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Menu
+                onClick={() => setIsOpen(!isOpen)}
+                className="cursor-pointer text-white hover:text-gray-300"
+              />
+            </SheetTrigger>
 
-              <div className="flex flex-col gap-2">
-                {routeList.map(({ href, label }) => (
+            <SheetContent
+              side="right"
+              className="flex flex-col justify-between bg-[#2c2f4a] border-[#3a3f5f] text-white"
+            >
+              <div>
+                <SheetHeader className="mb-6">
+                  <SheetTitle className="flex items-center text-white">
+                    <Link href="/" className="flex items-center">
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-2">
+                        <span className="text-[#2c2f4a] font-bold text-sm">
+                          PC
+                        </span>
+                      </div>
+                      Club
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
+
+                <div className="flex flex-col gap-2">
                   <Button
-                    key={href}
                     onClick={() => setIsOpen(false)}
                     asChild
                     variant="ghost"
-                    className="justify-start text-base"
+                    className="justify-start text-base text-white hover:text-[#9d4edd] hover:bg-[#3a3f5f]"
                   >
-                    <Link href={href}>{label}</Link>
+                    <Link href="#domains">Our Domains</Link>
                   </Button>
-                ))}
-              </div>
-            </div>
 
-            <SheetFooter className="flex-col sm:flex-col justify-start items-start">
-              <Separator className="mb-2" />
-
-              <ToggleTheme />
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* <!-- Desktop --> */}
-      <NavigationMenu className="hidden lg:block mx-auto">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-card text-base">
-              Features
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid w-[600px] grid-cols-2 gap-5 p-4">
-                <Image
-                  src="https://avatars.githubusercontent.com/u/75042455?v=4"
-                  alt="RadixLogo"
-                  className="h-full w-full rounded-md object-cover"
-                  width={600}
-                  height={600}
-                />
-                <ul className="flex flex-col gap-2">
-                  {featureList.map(({ title, description }) => (
-                    <li
-                      key={title}
-                      className="rounded-md p-3 text-sm hover:bg-muted"
+                  {routeList.map(({ href, label }) => (
+                    <Button
+                      key={href}
+                      onClick={() => setIsOpen(false)}
+                      asChild
+                      variant="ghost"
+                      className="justify-start text-base text-white hover:text-[#9d4edd] hover:bg-[#3a3f5f]"
                     >
-                      <p className="mb-1 font-semibold leading-none text-foreground">
-                        {title}
-                      </p>
-                      <p className="line-clamp-2 text-muted-foreground">
-                        {description}
-                      </p>
-                    </li>
+                      <Link href={href}>{label}</Link>
+                    </Button>
                   ))}
-                </ul>
+                </div>
               </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
-              <NavigationMenuLink key={href} asChild>
-                <Link href={href} className="text-base px-2">
-                  {label}
-                </Link>
-              </NavigationMenuLink>
-            ))}
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+              <SheetFooter className="flex-col sm:flex-col justify-start items-start">
+                <Separator className="mb-4 bg-[#3a3f5f]" />
+                <Button
+                  className="w-full bg-[#ff6b6b] hover:bg-[#ff5252] text-white font-medium"
+                  onClick={() => setIsOpen(false)}
+                >
+                  CONTACT
+                </Button>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
 
-      <div className="hidden lg:flex">
-        <ToggleTheme />
+        {/* Desktop Navigation */}
+        <NavigationMenu className="hidden lg:block mx-auto">
+          <NavigationMenuList>
+            {/* Our Domains Dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="bg-transparent text-gray-300 hover:text-white text-base border-none">
+                Our Domains
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="grid w-[500px] grid-cols-1 gap-3 p-4 bg-white">
+                  {domainList.map(({ title, description }) => (
+                    <NavigationMenuLink key={title} asChild>
+                      <Link
+                        href={`#${title.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="block rounded-md p-3 text-sm hover:bg-gray-50 transition-colors"
+                      >
+                        <p className="mb-1 font-semibold leading-none text-[#2c2f4a]">
+                          {title}
+                        </p>
+                        <p className="line-clamp-2 text-gray-600">
+                          {description}
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  ))}
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-        <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
-          <Link
-            aria-label="View on GitHub"
-            href="https://github.com/nobruf/shadcn-landing-page.git"
-            target="_blank"
+            {/* Regular Navigation Links */}
+            <NavigationMenuItem>
+              {routeList.map(({ href, label }) => (
+                <NavigationMenuLink key={href} asChild>
+                  <Link
+                    href={href}
+                    className="text-base px-4 py-2 text-gray-300 hover:text-white transition-colors font-medium"
+                  >
+                    {label}
+                  </Link>
+                </NavigationMenuLink>
+              ))}
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Desktop Contact Button */}
+        <div className="hidden lg:flex">
+          <Button
+            asChild
+            className="bg-[#ff6b6b] hover:bg-[#ff5252] text-white font-medium px-6 py-2 transition-all duration-200 transform hover:scale-105"
           >
-            <Github className="size-5" />
-          </Link>
-        </Button>
+            <Link href="#contact">CONTACT</Link>
+          </Button>
+        </div>
       </div>
     </header>
   );

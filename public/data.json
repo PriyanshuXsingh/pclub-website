@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Aru",
+    "src": "https://i.ibb.co/23GKSgRc/aru.png",
+    "github": "https://github.com/staru09",
+    "linkedIn": "https://www.linkedin.com/in/aru-sharma-12a3a41b3/",
+    "designation": "Team Lead",
+    "quote": "Simplicity is the soul of efficiency. – Austin Freeman"
+  },
+  {
+    "name": "Krishna",
+    "src": "",
+    "github": "https://github.com/staru09",
+    "linkedIn": "https://www.linkedin.com/in/aru-sharma-12a3a41b3/",
+    "designation": "Web Dev Lead",
+    "quote": "First, solve the problem. Then, write the code. – John Johnson"
+  },
+  {
+    "name": "Samridhi Garg",
+    "src": "https://i.ibb.co/1G5Ft4PK/samridhi.png",
+    "github": "https://github.com/samridhixgarg",
+    "linkedIn": "https://www.linkedin.com/in/samridhi-garg-322659257",
+    "designation": "Team member",
+    "quote": "Code is like humor. When you have to explain it, it’s bad. – Cory House"
+  },
+  {
+    "name": "Arindam Gupta",
+    "src": "",
+    "github": "https://github.com/Ariii84",
+    "linkedIn": "https://www.linkedin.com/in/arindam-gupta-a49921286",
+    "designation": "Team member",
+    "quote": "The best way to get a project done faster is to start sooner. – Jim Highsmith"
+  },
+  {
+    "name": "Aashima Mittal",
+    "src": "",
+    "github": "https://github.com/Aashima77",
+    "linkedIn": "https://www.linkedin.com/in/aashima-mittal-550a70291/",
+    "designation": "Team member",
+    "quote": "Innovation is the outcome of a habit, not a random act. – Sukant Ratnakar"
+  },
+  {
+    "name": "Mudit Kumar",
+    "src": "",
+    "github": "https://github.com/greedy-wudpeckr",
+    "linkedIn": "https://www.linkedin.com/in/mudit-kumar-80ab63255",
+    "designation": "Team member",
+    "quote": "Talk is cheap. Show me the code. – Linus Torvalds"
+  },
+  {
+    "name": "Ankit Kumar",
+    "src": "https://ibb.co/21hb9cwj/ankit.png",
+    "github": "https://github.com/rajeraankit4",
+    "linkedIn": "https://www.linkedin.com/in/ankit-kumar-7b7768285/",
+    "designation": "DSA/CP",
+    "quote": "Experience is the name everyone gives to their mistakes. – Oscar Wilde"
+  },
+  {
+    "name": "Mohit",
+    "src": "",
+    "github": "https://github.com/Mohit-Davar",
+    "linkedIn": "https://www.linkedin.com/in/mohit-davar-2004-jalandhar/",
+    "designation": "Web Dev Lead",
+    "quote": "The function of good software is to make the complex appear simple. – Grady Booch"
+  },
+  {
+    "name": "Anurag",
+    "src": "",
+    "github": "https://github.com/Anuragcr07",
+    "linkedIn": "https://www.linkedin.com/in/anurag-a0342827b/",
+    "designation": "Team member",
+    "quote": "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code. – Dan Salomon"
+  },
+  {
+    "name": "Hitanshu Bansal",
+    "src": "",
+    "github": "",
+    "linkedIn": "https://www.linkedin.com/in/hitanshu-bansal-507605145",
+    "designation": "Design Lead",
+    "quote": "Design is not just what it looks like and feels like. Design is how it works. – Steve Jobs"
+  },
+  {
+    "name": "Arnav Kamboj",
+    "src": "",
+    "github": "https://github.com/farthestmage",
+    "linkedIn": "https://www.linkedin.com/in/arnavkamboj511/",
+    "designation": "iOS Dev",
+    "quote": "If you automate a mess, you get an automated mess. – Rod Michael"
+  },
+  {
+    "name": "Manavi Arora",
+    "src": "https://i.ibb.co/Vc9K1Mdv/manvi.png",
+    "github": "https://github.com/Manavi-Arora",
+    "linkedIn": "https://www.linkedin.com/in/manavi-arora-7b41a22ab/",
+    "designation": "DSA Lead",
+    "quote": "Programs must be written for people to read, and only incidentally for machines to execute. – Harold Abelson"
+  },
+  {
+    "name": "Aman Anand",
+    "src": "",
+    "github": "https://github.com/Aman-Rajput-10-09",
+    "linkedIn": "https://www.linkedin.com/in/aman-anand-65221b2a0",
+    "designation": "Android Lead",
+    "quote": "Your most unhappy customers are your greatest source of learning. – Bill Gates"
+  },
+  {
+    "name": "Mrityunjay Singh",
+    "src": "https://i.ibb.co/0pk6ncJP/mriyunjay.png",
+    "github": "https://github.com/DefinitelyMrityunjay",
+    "linkedIn": "https://www.linkedin.com/in/mrityunjay-singh-4837a82a8/",
+    "designation": "Design Lead",
+    "quote": "Bad design is smoke, while good design is a mirror. – Juan-Carlos Fernandez"
+  },
+  {
+    "name": "Abhinav Singh",
+    "src": "https://i.ibb.co/HTtJxtLt/abhinav.png",
+    "github": "https://github.com/abhinavraajput",
+    "linkedIn": "https://www.linkedin.com/in/abhinav-singh-2b8334230/",
+    "designation": "Team member",
+    "quote": "Learning to write programs stretches your mind and helps you think better. – Bill Gates"
+  }
+]

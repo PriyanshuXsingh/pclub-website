@@ -1,118 +1,138 @@
-import { Separator } from "@/components/ui/separator";
-import { ChevronsDownIcon } from "lucide-react";
+"use client";
+
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 
 export const FooterSection = () => {
   return (
-    <footer id="footer" className="container py-24 sm:py-32">
-      <div className="p-10 bg-card border border-secondary rounded-2xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-          <div className="col-span-full xl:col-span-2">
-            <Link href="#" className="flex font-bold items-center">
-              <ChevronsDownIcon className="w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary" />
+    <footer className="bg-[#2c2e48] text-white py-16">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          {/* Branding */}
+          <div>
+            <h2 className="text-2xl font-bold">Personal</h2>
+          </div>
 
-              <h3 className="text-2xl">Shadcn</h3>
+          {/* Menu */}
+          <div>
+            <h3 className="text-sm tracking-widest text-[#FF6A5C] font-medium mb-4">
+              MENU
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-sm tracking-widest text-[#FF6A5C] font-medium mb-4">
+              SERVICE
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Design
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  Marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:underline text-white/80 hover:text-white"
+                >
+                  See More
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex items-start justify-start gap-4 md:col-span-1 lg:justify-end">
+            <Link
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
+            >
+              <Facebook className="w-4 h-4" />
             </Link>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Contact</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Github
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitter
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Instagram
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Platforms</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                iOS
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Android
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Web
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Help</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Contact Us
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                FAQ
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Feedback
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Socials</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitch
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Discord
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Dribbble
-              </Link>
-            </div>
+            <Link
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
+            >
+              <Twitter className="w-4 h-4" />
+            </Link>
+            <Link
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
+            >
+              <Instagram className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 
-        <Separator className="my-6" />
-        <section className="">
-          <h3 className="">
-            &copy; 2024 Designed and developed by
-            <Link
-              target="_blank"
-              href="https://github.com/leoMirandaa"
-              className="text-primary transition-all border-primary hover:border-b-2 ml-1"
-            >
-              Leo Miranda
+        {/* Separator and Bottom Text */}
+        <Separator className="my-8 bg-white/10" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60 gap-4">
+          <span>Copyright © 2022 Laaqiq. All Rights Reserved.</span>
+          <div className="flex gap-6">
+            <Link href="#" className="hover:text-white">
+              Terms of Use
             </Link>
-          </h3>
-        </section>
+            <Link href="#" className="hover:text-white">
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
