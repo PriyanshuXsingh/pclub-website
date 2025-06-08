@@ -28,27 +28,6 @@ const events = [
     description: "Annual cultural fest of the institute.",
     image: E,
   },
-  {
-    id: 4,
-    title: "Goonj 2k25",
-    date: "21 Oct, 2024",
-    description: "Annual cultural fest of the institute.",
-    image: E,
-  },
-  {
-    id: 5,
-    title: "Goonj 2k25",
-    date: "21 Oct, 2024",
-    description: "Annual cultural fest of the institute.",
-    image: E,
-  },
-  {
-    id: 6,
-    title: "Goonj 2k25",
-    date: "21 Oct, 2024",
-    description: "Annual cultural fest of the institute.",
-    image: E,
-  },
 ];
 
 export const EventsSection = () => {
@@ -57,7 +36,10 @@ export const EventsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="w-full px-6 py-16 bg-gradient-to-br from-[#fdf3ef] to-[#e7dbdc] relative overflow-hidden">
+    <section
+      className="w-full px-6 py-16 bg-gradient-to-br from-[#fdf3ef] to-[#e7dbdc] relative overflow-hidden"
+      id="sessions"
+    >
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-neutral-900">Our Events</h2>

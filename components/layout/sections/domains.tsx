@@ -99,6 +99,7 @@ export const DomainsSection = () => {
     <section
       ref={sectionRef}
       className="bg-[#2c2f4a] py-20 md:py-32 relative overflow-hidden"
+      id="domains"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">

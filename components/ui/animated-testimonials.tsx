@@ -4,6 +4,8 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 
 import { useEffect, useState } from "react";
+import GithubIcon from "../icons/github-icon";
+import LinkedInIcon from "../icons/linkedin-icon";
 
 type Testimonial = {
   quote: string;
@@ -35,7 +37,7 @@ export const AnimatedTestimonials = ({
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
+      const interval = setInterval(handleNext, 8000);
       return () => clearInterval(interval);
     }
   }, [autoplay]);
@@ -144,6 +146,20 @@ export const AnimatedTestimonials = ({
                 </motion.span>
               ))}
             </motion.p>
+            <div className="mt-8 flex gap-4">
+              <GithubIcon
+                className="h-6 w-6 cursor-pointer"
+                onClick={() => {
+                  window.open(testimonials[active].github, "_blank");
+                }}
+              />
+              <LinkedInIcon
+                className="h-6 w-6 cursor-pointer"
+                onClick={() => {
+                  window.open(testimonials[active].linkedIn, "_blank");
+                }}
+              />
+            </div>
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
             <button

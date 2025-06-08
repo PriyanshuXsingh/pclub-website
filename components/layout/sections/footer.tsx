@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Instagram } from "lucide-react";
+import { IconBrandDiscord } from "@tabler/icons-react";
 
 export const FooterSection = () => {
   return (
@@ -22,7 +23,7 @@ export const FooterSection = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="#about"
                   className="hover:underline text-white/80 hover:text-white"
                 >
                   About
@@ -30,7 +31,7 @@ export const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#domains"
                   className="hover:underline text-white/80 hover:text-white"
                 >
                   Services
@@ -46,7 +47,7 @@ export const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#contact"
                   className="hover:underline text-white/80 hover:text-white"
                 >
                   Contact
@@ -99,19 +100,19 @@ export const FooterSection = () => {
           {/* Social Icons */}
           <div className="flex items-start justify-start gap-4 md:col-span-1 lg:justify-end">
             <Link
-              href="#"
+              href="https://discord.gg/sHmYD63J"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
             >
-              <Facebook className="w-4 h-4" />
+              <IconBrandDiscord className="w-4 h-4" />
             </Link>
             <Link
-              href="#"
+              href="https://x.com/PClubUIET?t=1K6tLLIc9XLwOXmJARKWag&s=08"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
             >
               <Twitter className="w-4 h-4" />
             </Link>
             <Link
-              href="#"
+              href="https://www.instagram.com/pclubuiet?utm_source=qr&igsh=MWE4NnFjbGMwenVwMQ=="
               className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF6A5C] text-white hover:opacity-90"
             >
               <Instagram className="w-4 h-4" />

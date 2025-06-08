@@ -81,7 +81,10 @@ export const ContactSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-[#2c2e48] flex items-center justify-center py-12 px-4">
+    <section
+      className="min-h-screen bg-[#2c2e48] flex items-center justify-center py-12 px-4"
+      id="contact"
+    >
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
         {/* Contact Form - Left Side */}
         <div className="bg-white rounded-lg p-8 shadow-lg">
@@ -99,7 +102,7 @@ export const ContactSection = () => {
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="Your name"
-                  className="w-full px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full text-black px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 {errors.firstName && (
                   <p className="text-red-500 text-sm mt-1">
@@ -114,7 +117,7 @@ export const ContactSection = () => {
                   value={formData.lastName}
                   onChange={handleInputChange}
                   placeholder="Last name"
-                  className="w-full px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full text-black px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 {errors.lastName && (
                   <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
@@ -130,7 +133,7 @@ export const ContactSection = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Your email"
-                className="w-full px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full text-black px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -161,7 +164,7 @@ export const ContactSection = () => {
                 onChange={handleInputChange}
                 rows={5}
                 placeholder="Message"
-                className="w-full px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full text-black px-4 py-3 border border-orange-600 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               />
               {errors.message && (
                 <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -198,21 +201,21 @@ export const ContactSection = () => {
               <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-white" />
               </div>
-              <span className="text-gray-300">@pixelbuilt</span>
+              <span className="text-gray-300">@uietchd</span>
             </div>
 
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
                 <Phone className="w-5 h-5 text-white" />
               </div>
-              <span className="text-gray-300">@pixelbuilt</span>
+              <span className="text-gray-300">pclubuiet@gmail.com</span>
             </div>
 
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
                 <Mail className="w-5 h-5 text-white" />
               </div>
-              <span className="text-gray-300">contactpixelb@gmail.com</span>
+              <span className="text-gray-300">pclubuiet@gmail.com</span>
             </div>
           </div>
         </div>

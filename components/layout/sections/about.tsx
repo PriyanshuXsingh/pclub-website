@@ -25,7 +25,11 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#f5f5f5] py-20 md:py-32">
+    <section
+      ref={sectionRef}
+      className="bg-[#f5f5f5] py-20 md:py-32"
+      id="about"
+    >
       <div className="container mx-auto px-6">
         <div className="text-center space-y-8">
           <Badge
