@@ -1,50 +1,50 @@
-"use client";
+"use client"
 
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "motion/react";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
+import { motion, AnimatePresence } from "motion/react"
 
-import { useEffect, useState } from "react";
-import GithubIcon from "../icons/github-icon";
-import LinkedInIcon from "../icons/linkedin-icon";
+import { useEffect, useState } from "react"
+import GithubIcon from "../icons/github-icon"
+import LinkedInIcon from "../icons/linkedin-icon"
 
 type Testimonial = {
-  quote: string;
-  name: string;
-  designation: string;
-  src: string;
-  github: string;
-  linkedIn: string;
-};
+  quote: string
+  name: string
+  designation: string
+  src: string
+  github: string
+  linkedIn: string
+}
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
 }: {
-  testimonials: Testimonial[];
-  autoplay?: boolean;
+  testimonials: Testimonial[]
+  autoplay?: boolean
 }) => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0)
 
   const handleNext = () => {
-    setActive((prev) => (prev + 1) % testimonials.length);
-  };
+    setActive((prev) => (prev + 1) % testimonials.length)
+  }
   const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   const isActive = (index: number) => {
-    return index === active;
-  };
+    return index === active
+  }
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 8000);
-      return () => clearInterval(interval);
+      const interval = setInterval(handleNext, 8000)
+      return () => clearInterval(interval)
     }
-  }, [autoplay]);
+  }, [autoplay])
 
   const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
-  };
+    return Math.floor(Math.random() * 21) - 10
+  }
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
@@ -150,13 +150,13 @@ export const AnimatedTestimonials = ({
               <GithubIcon
                 className="h-6 w-6 cursor-pointer"
                 onClick={() => {
-                  window.open(testimonials[active].github, "_blank");
+                  window.open(testimonials[active].github, "_blank")
                 }}
               />
               <LinkedInIcon
                 className="h-6 w-6 cursor-pointer"
                 onClick={() => {
-                  window.open(testimonials[active].linkedIn, "_blank");
+                  window.open(testimonials[active].linkedIn, "_blank")
                 }}
               />
             </div>
@@ -178,5 +178,5 @@ export const AnimatedTestimonials = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
-"use client";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+"use client"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   ArrowRight,
   Code,
@@ -10,13 +10,13 @@ import {
   Globe,
   Database,
   Palette,
-} from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+} from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 export const DomainsSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const sectionRef = useRef(null)
 
   const domains = [
     {
@@ -76,85 +76,85 @@ export const DomainsSection = () => {
       bgColor: "bg-gradient-to-br from-gray-100 via-slate-100 to-gray-200",
       iconColor: "text-gray-600",
     },
-  ];
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setIsVisible(true)
         }
       },
       { threshold: 0.1 },
-    );
+    )
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      observer.observe(sectionRef.current)
     }
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
       ref={sectionRef}
-      className="bg-[#2c2f4a] py-20 md:py-32 relative overflow-hidden"
+      className="relative overflow-hidden bg-[#2c2f4a] py-20 md:py-32"
       id="domains"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 border border-white/20 rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/20 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-white/20 rounded-full"></div>
+        <div className="absolute left-10 top-20 h-32 w-32 rounded-full border border-white/20"></div>
+        <div className="absolute bottom-20 right-20 h-24 w-24 rounded-full border border-white/20"></div>
+        <div className="absolute left-1/4 top-1/2 h-16 w-16 rounded-full border border-white/20"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex justify-between items-center mb-16">
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="mb-16 flex items-center justify-between">
           <div
             className={`transition-all duration-1000 ${
               isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-8"
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-8 opacity-0"
             }`}
           >
             <Badge
               variant="outline"
-              className="border-[#9d4edd] text-[#9d4edd] bg-[#9d4edd]/10 text-sm py-2 mb-4"
+              className="mb-4 border-[#9d4edd] bg-[#9d4edd]/10 py-2 text-sm text-[#9d4edd]"
             >
               PORTFOLIO
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-white md:text-5xl">
               Our Domains
             </h2>
           </div>
 
           <div
-            className={`transition-all duration-1000 delay-200 ${
+            className={`transition-all delay-200 duration-1000 ${
               isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-8"
+                ? "translate-x-0 opacity-100"
+                : "translate-x-8 opacity-0"
             }`}
           >
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#2c2f4a] font-medium group"
+              className="group border-white font-medium text-white hover:bg-white hover:text-[#2c2f4a]"
             >
               EXPLORE MORE
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {domains.map((domain, index) => {
-            const IconComponent = domain.icon;
+            const IconComponent = domain.icon
             return (
               <Card
                 key={domain.id}
-                className={`${domain.bgColor} border-none overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl group ${
+                className={`${domain.bgColor} group cursor-pointer overflow-hidden border-none transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                   isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
                 }`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
@@ -163,25 +163,25 @@ export const DomainsSection = () => {
                 onMouseEnter={() => setHoveredCard(domain.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <CardContent className="p-6 h-64 flex flex-col justify-between relative">
+                <CardContent className="relative flex h-64 flex-col justify-between p-6">
                   {/* Icon */}
                   <div
-                    className={`w-12 h-12 ${domain.iconColor} mb-4 transition-all duration-300 ${
-                      hoveredCard === domain.id ? "scale-110 rotate-12" : ""
+                    className={`h-12 w-12 ${domain.iconColor} mb-4 transition-all duration-300 ${
+                      hoveredCard === domain.id ? "rotate-12 scale-110" : ""
                     }`}
                   >
-                    <IconComponent className="w-full h-full" />
+                    <IconComponent className="h-full w-full" />
                   </div>
 
                   {/* Content */}
                   <div className="space-y-2">
                     <Badge
                       variant="secondary"
-                      className="bg-white/20 text-gray-700 text-xs"
+                      className="bg-white/20 text-xs text-gray-700"
                     >
                       {domain.subtitle}
                     </Badge>
-                    <h3 className="text-2xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+                    <h3 className="text-2xl font-bold text-gray-800 transition-colors group-hover:text-gray-900">
                       {domain.title}
                     </h3>
                     <p
@@ -201,10 +201,10 @@ export const DomainsSection = () => {
                   />
                 </CardContent>
               </Card>
-            );
+            )
           })}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

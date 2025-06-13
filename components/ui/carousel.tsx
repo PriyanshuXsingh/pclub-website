@@ -1,84 +1,84 @@
-"use client";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
-import { useState, useRef, useId, useEffect } from "react";
-import { Youtube, Github, ExternalLink } from "lucide-react";
+"use client"
+import { IconArrowNarrowRight } from "@tabler/icons-react"
+import { useState, useRef, useId, useEffect } from "react"
+import { Youtube, Github, ExternalLink } from "lucide-react"
 
 interface SlideData {
-  title: string;
-  src: string;
-  youtube: string;
-  live: string;
-  github: string;
+  title: string
+  src: string
+  youtube: string
+  live: string
+  github: string
 }
 
 interface SlideProps {
-  slide: SlideData;
-  index: number;
-  current: number;
-  handleSlideClick: (index: number) => void;
+  slide: SlideData
+  index: number
+  current: number
+  handleSlideClick: (index: number) => void
 }
 
 const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
-  const slideRef = useRef<HTMLLIElement>(null);
+  const slideRef = useRef<HTMLLIElement>(null)
 
-  const xRef = useRef(0);
-  const yRef = useRef(0);
-  const frameRef = useRef<number>();
+  const xRef = useRef(0)
+  const yRef = useRef(0)
+  const frameRef = useRef<number>()
 
   useEffect(() => {
     const animate = () => {
-      if (!slideRef.current) return;
+      if (!slideRef.current) return
 
-      const x = xRef.current;
-      const y = yRef.current;
+      const x = xRef.current
+      const y = yRef.current
 
-      slideRef.current.style.setProperty("--x", `${x}px`);
-      slideRef.current.style.setProperty("--y", `${y}px`);
+      slideRef.current.style.setProperty("--x", `${x}px`)
+      slideRef.current.style.setProperty("--y", `${y}px`)
 
-      frameRef.current = requestAnimationFrame(animate);
-    };
+      frameRef.current = requestAnimationFrame(animate)
+    }
 
-    frameRef.current = requestAnimationFrame(animate);
+    frameRef.current = requestAnimationFrame(animate)
 
     return () => {
       if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
+        cancelAnimationFrame(frameRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   const handleMouseMove = (event: React.MouseEvent) => {
-    const el = slideRef.current;
-    if (!el) return;
+    const el = slideRef.current
+    if (!el) return
 
-    const r = el.getBoundingClientRect();
-    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
-  };
+    const r = el.getBoundingClientRect()
+    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2))
+    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2))
+  }
 
   const handleMouseLeave = () => {
-    xRef.current = 0;
-    yRef.current = 0;
-  };
+    xRef.current = 0
+    yRef.current = 0
+  }
 
   const imageLoaded = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    event.currentTarget.style.opacity = "1";
-  };
+    event.currentTarget.style.opacity = "1"
+  }
 
   const handleIconClick = (e: React.MouseEvent, url: string) => {
-    e.stopPropagation();
+    e.stopPropagation()
     if (url) {
-      window.open(url, "_blank");
+      window.open(url, "_blank")
     }
-  };
+  }
 
-  const { src, title, youtube, github, live } = slide;
+  const { src, title, youtube, github, live } = slide
 
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 "
+        className="relative z-10 mx-[4vmin] flex h-[70vmin] w-[70vmin] flex-1 flex-col items-center justify-center text-center text-white opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -92,7 +92,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+          className="absolute left-0 top-0 h-full w-full overflow-hidden rounded-[1%] bg-[#1D1F2F] transition-all duration-150 ease-out"
           style={{
             transform:
               current === index
@@ -101,7 +101,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
           }}
         >
           <img
-            className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
+            className="duration-600 absolute inset-0 h-[120%] w-[120%] object-cover opacity-100 transition-opacity ease-in-out"
             style={{
               opacity: current === index ? 1 : 0.5,
             }}
@@ -115,37 +115,37 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
           )}
           {current === index && (
-            <div className="absolute top-4 right-4 flex flex-col space-y-3 animate-in slide-in-from-right duration-500">
+            <div className="absolute right-4 top-4 flex flex-col space-y-3 duration-500 animate-in slide-in-from-right">
               {youtube && (
                 <button
                   onClick={(e) => handleIconClick(e, youtube)}
-                  className="group relative p-3 bg-red-600/80 backdrop-blur-sm rounded-full hover:bg-red-600 hover:scale-110 transform transition-all duration-300 hover:shadow-lg hover:shadow-red-500/25 animate-in zoom-in-50 duration-300 delay-100"
+                  className="group relative transform rounded-full bg-red-600/80 p-3 backdrop-blur-sm transition-all delay-100 duration-300 animate-in zoom-in-50 hover:scale-110 hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/25"
                   title="Watch on YouTube"
                 >
-                  <Youtube className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-200" />
-                  <div className="absolute inset-0 bg-red-600/20 rounded-full animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Youtube className="h-5 w-5 text-white transition-transform duration-200 group-hover:scale-110" />
+                  <div className="absolute inset-0 animate-ping rounded-full bg-red-600/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 </button>
               )}
 
               {github && (
                 <button
                   onClick={(e) => handleIconClick(e, github)}
-                  className="group relative p-3 bg-gray-800/80 backdrop-blur-sm rounded-full hover:bg-gray-800 hover:scale-110 transform transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/25 animate-in zoom-in-50 duration-300 delay-200"
+                  className="group relative transform rounded-full bg-gray-800/80 p-3 backdrop-blur-sm transition-all delay-200 duration-300 animate-in zoom-in-50 hover:scale-110 hover:bg-gray-800 hover:shadow-lg hover:shadow-gray-500/25"
                   title="View on GitHub"
                 >
-                  <Github className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-200" />
-                  <div className="absolute inset-0 bg-gray-800/20 rounded-full animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Github className="h-5 w-5 text-white transition-transform duration-200 group-hover:scale-110" />
+                  <div className="absolute inset-0 animate-ping rounded-full bg-gray-800/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 </button>
               )}
 
               {live && (
                 <button
                   onClick={(e) => handleIconClick(e, live)}
-                  className="group relative p-3 bg-green-600/80 backdrop-blur-sm rounded-full hover:bg-green-600 hover:scale-110 transform transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25 animate-in zoom-in-50 duration-300 delay-300"
+                  className="group relative transform rounded-full bg-green-600/80 p-3 backdrop-blur-sm transition-all delay-300 duration-300 animate-in zoom-in-50 hover:scale-110 hover:bg-green-600 hover:shadow-lg hover:shadow-green-500/25"
                   title="View Live Demo"
                 >
-                  <ExternalLink className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-200" />
-                  <div className="absolute inset-0 bg-green-600/20 rounded-full animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <ExternalLink className="h-5 w-5 text-white transition-transform duration-200 group-hover:scale-110" />
+                  <div className="absolute inset-0 animate-ping rounded-full bg-green-600/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 </button>
               )}
             </div>
@@ -154,22 +154,22 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 
         <article
           className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
-            current === index ? "opacity-100 visible" : "opacity-0 invisible"
+            current === index ? "visible opacity-100" : "invisible opacity-0"
           }`}
         >
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold  relative">
+          <h2 className="relative text-lg font-semibold md:text-2xl lg:text-4xl">
             {title}
           </h2>
         </article>
       </li>
     </div>
-  );
-};
+  )
+}
 
 interface CarouselControlProps {
-  type: string;
-  title: string;
-  handleClick: () => void;
+  type: string
+  title: string
+  handleClick: () => void
 }
 
 const CarouselControl = ({
@@ -179,7 +179,7 @@ const CarouselControl = ({
 }: CarouselControlProps) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+      className={`border-3 mx-2 flex h-10 w-10 items-center justify-center rounded-full border-transparent bg-neutral-200 transition duration-200 hover:-translate-y-0.5 focus:border-[#6D64F7] focus:outline-none active:translate-y-0.5 dark:bg-neutral-800 ${
         type === "previous" ? "rotate-180" : ""
       }`}
       title={title}
@@ -187,41 +187,41 @@ const CarouselControl = ({
     >
       <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
     </button>
-  );
-};
+  )
+}
 
 interface CarouselProps {
-  slides: SlideData[];
+  slides: SlideData[]
 }
 
 export function Carousel({ slides }: CarouselProps) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0)
 
   const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
-  };
+    const previous = current - 1
+    setCurrent(previous < 0 ? slides.length - 1 : previous)
+  }
 
   const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
-  };
+    const next = current + 1
+    setCurrent(next === slides.length ? 0 : next)
+  }
 
   const handleSlideClick = (index: number) => {
     if (current !== index) {
-      setCurrent(index);
+      setCurrent(index)
     }
-  };
+  }
 
-  const id = useId();
+  const id = useId()
 
   return (
     <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
+      className="relative mx-auto h-[70vmin] w-[70vmin]"
       aria-labelledby={`carousel-heading-${id}`}
     >
       <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+        className="absolute mx-[-4vmin] flex transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
         }}
@@ -237,7 +237,7 @@ export function Carousel({ slides }: CarouselProps) {
         ))}
       </ul>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
+      <div className="absolute top-[calc(100%+1rem)] flex w-full justify-center">
         <CarouselControl
           type="previous"
           title="Go to previous slide"
@@ -251,5 +251,5 @@ export function Carousel({ slides }: CarouselProps) {
         />
       </div>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { Sparkles, ArrowRight, Zap } from "lucide-react";
-import { Carousel } from "@/components/ui/carousel";
+"use client"
+import React from "react"
+import { Sparkles, ArrowRight, Zap } from "lucide-react"
+import { Carousel } from "@/components/ui/carousel"
 
 const slides = [
   {
@@ -46,11 +46,11 @@ const slides = [
     github: "https://github.com/username/weather-app",
     live: "https://weather-app.vercel.app",
   },
-];
+]
 
 export const ProjectsSection = () => {
   return (
-    <div className="min-h-screen bg-[#2b2e48] relative overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-[#2b2e48]">
       {/* Background Pattern */}
       <div
         className="absolute inset-0 opacity-50"
@@ -60,38 +60,38 @@ export const ProjectsSection = () => {
       ></div>
 
       {/* Floating Orbs */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
-      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-300"></div>
+      <div className="absolute left-20 top-20 h-72 w-72 animate-pulse rounded-full bg-purple-500/10 blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 h-96 w-96 animate-pulse rounded-full bg-blue-500/10 blur-3xl delay-700"></div>
+      <div className="absolute left-1/3 top-1/2 h-64 w-64 animate-pulse rounded-full bg-pink-500/10 blur-3xl delay-300"></div>
 
-      <div className="relative z-10 py-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
           {/* Header Section */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
-              <Sparkles className="w-5 h-5 text-purple-300" />
-              <span className="text-white/80 font-medium">
+          <div className="mb-20 text-center">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
+              <Sparkles className="h-5 w-5 text-purple-300" />
+              <span className="font-medium text-white/80">
                 Our Creative Work
               </span>
             </div>
 
-            <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="mb-6 text-6xl font-bold tracking-tight text-white md:text-7xl">
               Our{" "}
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
                 Projects
               </span>
             </h2>
 
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-2xl text-xl leading-relaxed text-white/70">
               Discover our innovative solutions and creative endeavors that push
               the boundaries of technology and design
             </p>
 
             {/* Decorative Line */}
-            <div className="flex items-center justify-center mt-8">
-              <div className="h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent w-64"></div>
-              <Zap className="w-6 h-6 text-purple-400 mx-4" />
-              <div className="h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent w-64"></div>
+            <div className="mt-8 flex items-center justify-center">
+              <div className="h-px w-64 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+              <Zap className="mx-4 h-6 w-6 text-purple-400" />
+              <div className="h-px w-64 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
             </div>
           </div>
 
@@ -100,5 +100,5 @@ export const ProjectsSection = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

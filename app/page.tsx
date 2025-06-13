@@ -1,11 +1,11 @@
-import { AboutSection } from "@/components/layout/sections/about";
-import { ContactSection } from "@/components/layout/sections/contact";
-import { DomainsSection } from "@/components/layout/sections/domains";
-import { EventsSection } from "@/components/layout/sections/events";
-import { FooterSection } from "@/components/layout/sections/footer";
-import { HeroSection } from "@/components/layout/sections/hero";
-import { ProjectsSection } from "@/components/layout/sections/projects";
-import { TeamSection } from "@/components/layout/sections/team";
+import { AboutSection } from "@/components/layout/sections/about"
+import { ContactSection } from "@/components/layout/sections/contact"
+import { DomainsSection } from "@/components/layout/sections/domains"
+import { EventsSection } from "@/components/layout/sections/events"
+import { FooterSection } from "@/components/layout/sections/footer"
+import { HeroSection } from "@/components/layout/sections/hero"
+import { ProjectsSection } from "@/components/layout/sections/projects"
+import { TeamSection } from "@/components/layout/sections/team"
 
 export const metadata = {
   title: "P-Club, UIET",
@@ -33,7 +33,7 @@ export const metadata = {
       "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
     ],
   },
-};
+}
 
 export default function Home() {
   return (
@@ -47,5 +47,5 @@ export default function Home() {
       <ContactSection />
       <FooterSection />
     </>
-  );
+  )
 }

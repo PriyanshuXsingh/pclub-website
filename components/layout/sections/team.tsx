@@ -1,77 +1,77 @@
-"use client";
-import React from "react";
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import { Users, Briefcase } from "lucide-react";
-import data from "@/public/data.json";
+"use client"
+import React from "react"
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
+import { Users, Briefcase } from "lucide-react"
+import data from "@/public/data.json"
 
 export const TeamSection = () => {
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 py-16 px-6"
+      className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 px-6 py-16"
       id="team"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-amber-900 mb-4 tracking-tight">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-5xl font-bold tracking-tight text-amber-900">
             Our Team
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-orange-500 mx-auto rounded-full"></div>
+          <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-amber-600 to-orange-500"></div>
         </div>
 
         {/* Animated Testimonials Section */}
-        <div className="mb-20 bg-white/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+        <div className="mb-20 rounded-3xl border border-white/20 bg-white/40 p-8 shadow-xl backdrop-blur-sm">
           <AnimatedTestimonials testimonials={data} autoplay />
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2">
           {/* Members Card */}
           <div className="group relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300"></div>
-            <div className="relative bg-white rounded-2xl p-8 shadow-2xl border border-orange-100 transform group-hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-center justify-center mb-6">
-                <div className="p-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-full">
-                  <Users className="w-8 h-8 text-orange-600" />
+            <div className="absolute inset-0 rotate-1 transform rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 transition-transform duration-300 group-hover:rotate-2"></div>
+            <div className="relative transform rounded-2xl border border-orange-100 bg-white p-8 shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+              <div className="mb-6 flex items-center justify-center">
+                <div className="rounded-full bg-gradient-to-br from-orange-100 to-red-100 p-4">
+                  <Users className="h-8 w-8 text-orange-600" />
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-orange-600 mb-2 font-mono">
+                <div className="mb-2 font-mono text-5xl font-bold text-orange-600">
                   52
                 </div>
-                <div className="text-gray-600 font-medium text-lg">Members</div>
+                <div className="text-lg font-medium text-gray-600">Members</div>
               </div>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+              <div className="absolute right-4 top-4 h-2 w-2 animate-pulse rounded-full bg-orange-400"></div>
             </div>
           </div>
 
           {/* Projects Done Card */}
           <div className="group relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-300"></div>
-            <div className="relative bg-white rounded-2xl p-8 shadow-2xl border border-orange-100 transform group-hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-center justify-center mb-6">
-                <div className="p-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-full">
-                  <Briefcase className="w-8 h-8 text-orange-600" />
+            <div className="absolute inset-0 -rotate-1 transform rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 transition-transform duration-300 group-hover:-rotate-2"></div>
+            <div className="relative transform rounded-2xl border border-orange-100 bg-white p-8 shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+              <div className="mb-6 flex items-center justify-center">
+                <div className="rounded-full bg-gradient-to-br from-orange-100 to-red-100 p-4">
+                  <Briefcase className="h-8 w-8 text-orange-600" />
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-orange-600 mb-2 font-mono">
+                <div className="mb-2 font-mono text-5xl font-bold text-orange-600">
                   73+
                 </div>
-                <div className="text-gray-600 font-medium text-lg">
+                <div className="text-lg font-medium text-gray-600">
                   Projects Done
                 </div>
               </div>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+              <div className="absolute right-4 top-4 h-2 w-2 animate-pulse rounded-full bg-orange-400"></div>
             </div>
           </div>
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-orange-200 to-pink-200 rounded-full opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 bg-gradient-to-br from-red-200 to-orange-200 rounded-full opacity-30 animate-pulse delay-300"></div>
-        <div className="absolute top-1/2 left-5 w-12 h-12 bg-gradient-to-br from-pink-200 to-orange-200 rounded-full opacity-20 animate-pulse delay-700"></div>
+        <div className="absolute left-10 top-20 h-20 w-20 animate-pulse rounded-full bg-gradient-to-br from-orange-200 to-pink-200 opacity-30"></div>
+        <div className="absolute bottom-20 right-10 h-16 w-16 animate-pulse rounded-full bg-gradient-to-br from-red-200 to-orange-200 opacity-30 delay-300"></div>
+        <div className="absolute left-5 top-1/2 h-12 w-12 animate-pulse rounded-full bg-gradient-to-br from-pink-200 to-orange-200 opacity-20 delay-700"></div>
       </div>
     </div>
-  );
-};
+  )
+}

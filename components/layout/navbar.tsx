@@ -1,6 +1,6 @@
-"use client";
-import { Menu } from "lucide-react";
-import React from "react";
+"use client"
+import { Menu } from "lucide-react"
+import React from "react"
 import {
   Sheet,
   SheetContent,
@@ -8,8 +8,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { Separator } from "../ui/separator";
+} from "../ui/sheet"
+import { Separator } from "../ui/separator"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,18 +17,18 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
-import { Button } from "../ui/button";
-import Link from "next/link";
+} from "../ui/navigation-menu"
+import { Button } from "../ui/button"
+import Link from "next/link"
 
 interface RouteProps {
-  href: string;
-  label: string;
+  href: string
+  label: string
 }
 
 interface DomainProps {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
 const routeList: RouteProps[] = [
@@ -44,7 +44,7 @@ const routeList: RouteProps[] = [
     href: "#sessions",
     label: "Upcoming Sessions",
   },
-];
+]
 
 const domainList: DomainProps[] = [
   {
@@ -64,21 +64,21 @@ const domainList: DomainProps[] = [
     title: "Competitive Programming",
     description: "Algorithm design, problem solving, and coding competitions.",
   },
-];
+]
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false)
 
   return (
-    <header className="bg-[#2c2f4a] w-full top-0 sticky z-40 border-b border-[#3a3f5f]">
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-4 px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-[#3a3f5f] bg-[#2c2f4a]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between p-4 px-6">
         {/* Logo */}
         <Link
           href="/"
-          className="font-bold text-lg flex items-center text-white"
+          className="flex items-center text-lg font-bold text-white"
         >
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-2">
-            <span className="text-[#2c2f4a] font-bold text-sm">PC</span>
+          <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-full bg-white">
+            <span className="text-sm font-bold text-[#2c2f4a]">PC</span>
           </div>
           Club
         </Link>
@@ -95,14 +95,14 @@ export const Navbar = () => {
 
             <SheetContent
               side="right"
-              className="flex flex-col justify-between bg-[#2c2f4a] border-[#3a3f5f] text-white"
+              className="flex flex-col justify-between border-[#3a3f5f] bg-[#2c2f4a] text-white"
             >
               <div>
                 <SheetHeader className="mb-6">
                   <SheetTitle className="flex items-center text-white">
                     <Link href="/" className="flex items-center">
-                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-2">
-                        <span className="text-[#2c2f4a] font-bold text-sm">
+                      <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-full bg-white">
+                        <span className="text-sm font-bold text-[#2c2f4a]">
                           PC
                         </span>
                       </div>
@@ -116,7 +116,7 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     asChild
                     variant="ghost"
-                    className="justify-start text-base text-white hover:text-[#9d4edd] hover:bg-[#3a3f5f]"
+                    className="justify-start text-base text-white hover:bg-[#3a3f5f] hover:text-[#9d4edd]"
                   >
                     <Link href="#domains">Our Domains</Link>
                   </Button>
@@ -127,7 +127,7 @@ export const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       asChild
                       variant="ghost"
-                      className="justify-start text-base text-white hover:text-[#9d4edd] hover:bg-[#3a3f5f]"
+                      className="justify-start text-base text-white hover:bg-[#3a3f5f] hover:text-[#9d4edd]"
                     >
                       <Link href={href}>{label}</Link>
                     </Button>
@@ -135,10 +135,10 @@ export const Navbar = () => {
                 </div>
               </div>
 
-              <SheetFooter className="flex-col sm:flex-col justify-start items-start">
+              <SheetFooter className="flex-col items-start justify-start sm:flex-col">
                 <Separator className="mb-4 bg-[#3a3f5f]" />
                 <Button
-                  className="w-full bg-[#ff6b6b] hover:bg-[#ff5252] text-white font-medium"
+                  className="w-full bg-[#ff6b6b] font-medium text-white hover:bg-[#ff5252]"
                   onClick={() => setIsOpen(false)}
                 >
                   CONTACT
@@ -149,20 +149,20 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <NavigationMenu className="hidden lg:block mx-auto">
+        <NavigationMenu className="mx-auto hidden lg:block">
           <NavigationMenuList>
             {/* Our Domains Dropdown */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent text-gray-300 hover:text-white text-base border-none">
+              <NavigationMenuTrigger className="border-none bg-transparent text-base text-gray-300 hover:text-white">
                 Our Domains
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-[500px] grid-cols-1 gap-3 p-4 bg-white">
+                <div className="grid w-[500px] grid-cols-1 gap-3 bg-white p-4">
                   {domainList.map(({ title, description }) => (
                     <NavigationMenuLink key={title} asChild>
                       <Link
                         href={`#${title.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="block rounded-md p-3 text-sm hover:bg-gray-50 transition-colors"
+                        className="block rounded-md p-3 text-sm transition-colors hover:bg-gray-50"
                       >
                         <p className="mb-1 font-semibold leading-none text-[#2c2f4a]">
                           {title}
@@ -183,7 +183,7 @@ export const Navbar = () => {
                 <NavigationMenuLink key={href} asChild>
                   <Link
                     href={href}
-                    className="text-base px-4 py-2 text-gray-300 hover:text-white transition-colors font-medium"
+                    className="px-4 py-2 text-base font-medium text-gray-300 transition-colors hover:text-white"
                   >
                     {label}
                   </Link>
@@ -197,12 +197,12 @@ export const Navbar = () => {
         <div className="hidden lg:flex">
           <Button
             asChild
-            className="bg-[#ff6b6b] hover:bg-[#ff5252] text-white font-medium px-6 py-2 transition-all duration-200 transform hover:scale-105"
+            className="transform bg-[#ff6b6b] px-6 py-2 font-medium text-white transition-all duration-200 hover:scale-105 hover:bg-[#ff5252]"
           >
             <Link href="#contact">CONTACT</Link>
           </Button>
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

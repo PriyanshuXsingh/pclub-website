@@ -1,9 +1,9 @@
-import { useTheme } from "next-themes";
-import { Button } from "../ui/button";
-import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes"
+import { Button } from "../ui/button"
+import { Moon, Sun } from "lucide-react"
 
 export const ToggleTheme = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
   return (
     <Button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -16,12 +16,12 @@ export const ToggleTheme = () => {
         <span className="block lg:hidden"> Escuro </span>
       </div>
 
-      <div className="dark:flex gap-2 hidden">
+      <div className="hidden gap-2 dark:flex">
         <Sun className="size-5" />
         <span className="block lg:hidden">Claro</span>
       </div>
 
       <span className="sr-only">Trocar de tema</span>
     </Button>
-  );
-};
+  )
+}
