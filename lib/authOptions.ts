@@ -19,6 +19,7 @@ export const authOptions: NextAuthConfig = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials) {
         const user = await prisma.user.findUnique({
           where: { email: typeof credentials?.email === "string" ? credentials.email : undefined },
@@ -83,7 +84,7 @@ export const authOptions: NextAuthConfig = {
     },
 
     async session({ session, user }) {
-      // now `user` comes from DB session since strategy is "database"
+      // now `user comes from DB session since strategy is "database"
       session.user.role = user.role;
       session.user.approved = user.approved;
       return session;
