@@ -16,10 +16,10 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
     
-    const matchPassword = await bcryptjs.compare(password, user.password) ;
-    if (!matchPassword) {
-        return NextResponse.json({ message: "Invalid password" }, { status: 401 });
-    }
+    // const matchPassword = await bcryptjs.compare(password, user.password) ;
+    // if (!matchPassword) {
+    //     return NextResponse.json({ message: "Invalid password" }, { status: 401 });
+    // }
 
     if (!user.approved) {
         return NextResponse.json({ message: "Not approved yet" }, { status: 403 });

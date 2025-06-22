@@ -70,7 +70,7 @@ export default function AdminPage() {
 
     const Card: React.FC<{ user: User; actions?: boolean }> = ({ user, actions }) => {
         return (
-            <div className="bg-white shadow-md rounded-xl p-4 w-full max-w-md">
+            <div className="bg-white text-black shadow-md rounded-xl p-4 w-full max-w-md">
                 <p><strong>Name:</strong> {user.name || "Unknown"}</p>
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Role:</strong> {user.role}</p>
@@ -86,26 +86,26 @@ export default function AdminPage() {
 
 
     return (
-        <div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
+        <div className="min-h-screen bg-blue-100 p-8 flex flex-col items-center">
 
             <section className="w-full max-w-5xl mb-12">
-                <h2 className="text-xl font-semibold mb-4">Pending Requests</h2>
+                <h2 className="text-xl text-slate-950 font-semibold mb-4">Pending Requests</h2>
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {pendingUser.length ? pendingUser.map((user) => <Card key={user.id} user={user} actions />) : <p className="col-span-full">No pending requests</p>}
+                    {pendingUser.length ? pendingUser.map((user) => <Card key={user.id} user={user} actions />) : <p className="col-span-full text-slate-600">No pending requests</p>}
                 </div>
             </section>
 
             <section className="w-full max-w-5xl mb-12">
-                <h2 className="text-xl font-semibold mb-4">Approved Admins</h2>
+                <h2 className="text-xl text-slate-950 font-semibold mb-4">Approved Admins</h2>
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {approveUser.length ? approveUser.map((user) => <Card key={user.id} user={user} />) : <p className="col-span-full">No admins yet</p>}
+                    {approveUser.length ? approveUser.map((user) => <Card key={user.id} user={user} />) : <p className="col-span-full text-slate-600">No admins yet</p>}
                 </div>
             </section>
 
             <section className="w-full max-w-5xl">
-                <h2 className="text-xl font-semibold mb-4">Rejected Users</h2>
+                <h2 className="text-xl text-slate-950 font-semibold mb-4">Rejected Users</h2>
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {rejectUser.length ? rejectUser.map((user) => <Card key={user.id} user={user} />) : <p className="col-span-full">No rejected users</p>}
+                    {rejectUser.length ? rejectUser.map((user) => <Card key={user.id} user={user} />) : <p className="col-span-full text-slate-600">No rejected users</p>}
                 </div>
             </section>
 
