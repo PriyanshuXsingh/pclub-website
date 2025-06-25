@@ -1,10 +1,10 @@
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import prisma from "@/lib/prisma"
-import type { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import GoogleProvider from "next-auth/providers/google"
-import GitHubProvider from "next-auth/providers/github"
-import bcryptjs from "bcryptjs"
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/lib/prisma";
+import type { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+import bcryptjs from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -20,25 +20,25 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
-          throw new Error("Missing email or password")
+          throw new Error("Missing email or password");
         }
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
-        })
+        });
 
-        if (!user) throw new Error("No user found")
-        if (!user.password) throw new Error("No password set for this user")
+        if (!user) throw new Error("No user found");
+        if (!user.password) throw new Error("No password set for this user");
 
         const isPasswordValid = await bcryptjs.compare(
           credentials.password,
-          user.password,
-        )
+          user.password
+        );
 
-        if (!isPasswordValid) throw new Error("Invalid password")
-        if (!user.approved) throw new Error("User not approved")
+        if (!isPasswordValid) throw new Error("Invalid password");
+        if (!user.approved) throw new Error("User not approved");
 
-        return user
+        return user;
       },
     }),
 
@@ -70,20 +70,20 @@ export const authOptions: NextAuthOptions = {
 
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
-        token.role = user.role
-        token.approved = user.approved
+        token.id = user.id;
+        token.role = user.role;
+        token.approved = user.approved;
       }
-      return token
+      return token;
     },
 
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id
-        session.user.role = token.role
-        session.user.approved = token.approved
+        session.user.id = token.id;
+        session.user.role = token.role;
+        session.user.approved = token.approved;
       }
-      return session
+      return session;
     },
   },
 

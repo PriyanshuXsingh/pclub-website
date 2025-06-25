@@ -8,5 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function EventPage() {
-  return <div></div>
+  return (
+    <div></div>
+  )
 }

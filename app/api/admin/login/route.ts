@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
   }) // user may be null
 
   if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 })
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
 
   // const matchPassword = await bcryptjs.compare(password, user.password) ;
