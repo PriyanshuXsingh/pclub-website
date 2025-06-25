@@ -77,3 +77,42 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+
+model Member {
+  id              String   @id @default(cuid())     // Unique identifier for each member - @id is used for primary key
+  name            String
+  email           String   @unique
+  roll_no         String   @unique
+  role            String?
+  branch          String
+  year            Int
+  socials         Json        // for key-value pairs
+  profile_picture String?    // Image URL
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt      // Auto-updated on changes
+}
+
+
+model Event {
+  id           String   @id @default(cuid())
+  title        String
+  desc         String
+  eventType    String[]
+  registerLink String
+  bannerImage  String?
+  status       Status     // single enum (not array)
+  organizer    String?
+  speaker      String?
+  recordLink   String?
+  date         DateTime
+  location     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Status {
+  Upcoming
+  Completed
+  Cancelled
+}
