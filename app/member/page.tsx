@@ -23,7 +23,7 @@ type Member = {
   profile_picture: string
 }
 
-export default function memberPage() {
+export default function MemberPage() {
   const router = useRouter()
   const [members, setMembers] = useState<Member[]>([])
   const [editMember, setEditMember] = React.useState<Member | null>(null)
@@ -42,6 +42,23 @@ export default function memberPage() {
     }
     fetchMembers()
   }, [])
+
+  useEffect(() => {
+    const isModalOpen = !!addMember || !!editMember
+
+    if (isModalOpen) {
+      // Disable scroll
+      document.body.style.overflow = "hidden"
+    } else {
+      // Re-enable scroll
+      document.body.style.overflow = "auto"
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [addMember, editMember])
 
   const onDeleteMember = async (memberID: string) => {
     try {
@@ -71,57 +88,58 @@ export default function memberPage() {
 
   const Card: React.FC<{ member: Member }> = ({ member }) => {
     return (
-      <div className="flex flex-col items-center space-y-3 rounded-xl border border-gray-700 bg-[#1a1a1a] p-6 text-white shadow-lg">
-        {member.profile_picture && (
-          <Image
-            src={member.profile_picture}
-            alt={`${member.name}'s profile`}
-            width={96}
-            height={96}
-            className="h-24 w-24 rounded-full border-2 border-blue-500 object-cover"
-          />
-        )}
+      <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl transition-all duration-300 hover:scale-105">
+        <div className="flex flex-col items-center space-y-4 px-6 py-6 text-center text-gray-800">
+          {member.profile_picture && (
+            <Image
+              src={member.profile_picture}
+              alt={`${member.name}'s profile`}
+              width={96}
+              height={96}
+              className="h-24 w-24 rounded-full border-2 border-blue-500 object-cover"
+            />
+          )}
 
-        <div className="space-y-1 text-center">
-          <p className="text-lg font-semibold">{member.name}</p>
-          <p className="text-sm text-gray-400">{member.roll_no}</p>
-          <p className="text-sm text-gray-400">{member.email}</p>
-          <p className="text-sm">
-            {member.branch} - Year {member.year}
-          </p>
+          <div className="space-y-1">
+            <p className="text-lg font-semibold">{member.name}</p>
+            <p className="text-sm text-gray-500">{member.roll_no}</p>
+            <p className="text-sm text-gray-500">{member.email}</p>
+            <p className="text-sm">
+              {member.branch} - Year {member.year}
+            </p>
+          </div>
+
+          <div className="mt-3 flex gap-4 text-xl text-blue-600">
+            {member.socials.linkedin && (
+              <a
+                href={member.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+            )}
+            {member.socials.github && (
+              <a
+                href={member.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+            )}
+          </div>
         </div>
 
-        <div className="mt-2 flex gap-4 text-xl text-blue-400">
-          {/* target="_blank": opens link in new tab and rel="noopener noreferrer": prevents the new tab from having access to your window object via window.opener */}
-          {member.socials.linkedin && (
-            <a
-              href={member.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-          )}
-          {member.socials.github && (
-            <a
-              href={member.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-          )}
-        </div>
-
-        <div className="mt-4 flex gap-3">
+        <div className="mt-2 flex justify-center gap-4 px-6 pb-5">
           <button
-            className="rounded-lg bg-yellow-600 px-4 py-2 font-medium text-white hover:bg-yellow-700"
+            className="rounded-md bg-yellow-500 px-5 py-2 text-sm text-white transition hover:bg-yellow-600"
             onClick={() => setEditMember(member)}
           >
             Edit
           </button>
           <button
-            className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700"
+            className="rounded-md bg-red-500 px-5 py-2 text-sm text-white transition hover:bg-red-600"
             onClick={() => onDeleteMember(member.id)}
           >
             Delete
@@ -132,70 +150,65 @@ export default function memberPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] px-6 py-10 text-white">
-      <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
-        {/* open the modal with an empty Member object */}
-        <button
-          className="rounded-lg bg-blue-600 px-6 py-2 font-semibold text-white shadow hover:bg-blue-700"
-          onClick={() =>
-            setAddMember({
-              id: "",
-              name: "",
-              email: "",
-              roll_no: "",
-              role: "",
-              branch: "",
-              year: 1,
-              socials: {},
-              profile_picture: "",
-            })
-          }
-        >
-          Add a Member
-        </button>
+    <div className="min-h-screen bg-gradient-to-br from-[#fdf3ef] to-[#e7dbdc] px-6 py-16 text-gray-900">
+      <div className="mx-auto max-w-7xl">
+        {/* Header buttons */}
+        <div className="mb-10 flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <button
+            className="rounded-lg bg-[#ec684a] px-6 py-3 text-white shadow-md transition hover:bg-[#d65732]"
+            onClick={() =>
+              setAddMember({
+                id: "",
+                name: "",
+                email: "",
+                roll_no: "",
+                role: "",
+                branch: "",
+                year: 1,
+                socials: {},
+                profile_picture: "",
+              })
+            }
+          >
+            Add Member
+          </button>
 
-        <div className="search mr-4 w-full sm:w-auto">
-          <form className="flex items-center gap-2">
+          <div className="w-full sm:w-1/2">
             <input
               type="text"
               placeholder="Search by name"
               name="search"
-              className="rounded-lg border border-gray-700 bg-[#1f1f1f] px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
               onChange={(e) => setSearch(e.target.value)}
             />
-            {/* <button
-              type="submit"
-              className="rounded-lg bg-gray-800 px-4 py-2 text-white hover:bg-gray-700"
-            >
-              <i className="fa fa-search"></i>
-            </button> */}
-          </form>
+          </div>
         </div>
+
+        {/* Member Cards Grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+          {members
+            .filter((m) => m.name.toLowerCase().includes(search.toLowerCase()))
+            .map((member: Member) => (
+              <Card key={member.id} member={member} />
+            ))}
+        </div>
+
+        {editMember && (
+          <EditMemberModal
+            member={editMember}
+            onClose={() => setEditMember(null)}
+            onEdit={handleEditMember}
+          />
+        )}
+
+        {addMember && (
+          <AddMemberModal
+            member={addMember}
+            onClose={() => setAddMember(null)}
+            onAdd={handleAddMember}
+          />
+        )}
       </div>
-
-      <div className="memlist grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {members
-          .filter((m) => m.name.toLowerCase().includes(search.toLowerCase()))
-          .map((member: Member) => (
-            <Card key={member.id} member={member} />
-          ))}
-      </div>
-
-      {editMember && (
-        <EditMemberModal
-          member={editMember}
-          onClose={() => setEditMember(null)}
-          onEdit={handleEditMember}
-        />
-      )}
-
-      {addMember && (
-        <AddMemberModal
-          member={addMember}
-          onClose={() => setAddMember(null)}
-          onAdd={handleAddMember}
-        />
-      )}
     </div>
   )
 }
