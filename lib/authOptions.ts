@@ -10,6 +10,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt", // use JWT for session
+    maxAge: 1 * 24 * 60 * 60 * 1000, // sets the JWT session to expire after exactly 1 day
   },
   providers: [
     CredentialsProvider({
@@ -91,4 +92,6 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
+
+  secret: process.env.NEXTAUTH_SECRET,
 }

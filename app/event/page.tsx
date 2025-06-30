@@ -107,57 +107,79 @@ export default function EventPage() {
   }
 
   const Card: React.FC<{ event: Event }> = ({ event }) => {
+    const getStatusStyle = (status: Status) => {
+      switch (status) {
+        case "UPCOMING":
+          return "bg-yellow-100 text-yellow-800"
+        case "COMPLETED":
+          return "bg-green-100 text-green-700"
+        case "CANCELLED":
+          return "bg-red-100 text-red-700"
+        default:
+          return "bg-yellow-100 text-yellow-800"
+      }
+    }
+
     return (
-      <div className="group flex flex-col justify-between overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:scale-105">
+      <div className="group flex flex-col overflow-hidden rounded-3xl border border-orange-200 bg-white shadow-xl ring-1 ring-orange-100 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]">
         {event.bannerImage && (
-          <div className="relative h-44 w-full">
+          <div className="relative h-48 w-full">
             <Image
-              src={String(event.bannerImage)}
+              src={event.bannerImage}
               alt={`${event.title} image`}
               fill
-              className="rounded-t-xl object-cover"
+              className="object-cover"
             />
           </div>
         )}
 
-        <div className="flex flex-col items-center space-y-3 px-6 py-5 text-center text-gray-800">
-          <h3 className="text-xl font-bold">{event.title}</h3>
-          <p className="text-base text-gray-700">{event.desc}</p>
-          <p className="text-sm font-medium text-gray-500">
-            {event.eventType.join(", ")}
-          </p>
+        <div className="flex flex-col gap-3 px-6 py-5 text-gray-800">
+          <h3 className="text-xl font-bold text-orange-900">{event.title}</h3>
+          <p className="line-clamp-3 text-sm text-gray-700">{event.desc}</p>
 
-          <a
-            href={event.registerLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            Register Link
-          </a>
-
-          <div className="mt-1 text-sm">
-            <span className="mr-2 font-medium">Status:</span>
-            <span className="inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700">
-              {event.status}
-            </span>
+          <div className="flex flex-wrap gap-2 text-xs font-medium text-orange-600">
+            {event.eventType.map((type, idx) => (
+              <span
+                key={idx}
+                className="rounded-full bg-orange-100 px-2 py-0.5"
+              >
+                #{type}
+              </span>
+            ))}
           </div>
 
-          <p className="text-sm text-gray-500">
-            {formatCustomDate(event.date)}
-          </p>
+          <div className="mt-2 flex flex-col gap-1 text-xs font-medium text-gray-600">
+            <div className="flex items-center gap-5">
+              <p>{formatCustomDate(event.date)}</p>
+              <span
+                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${getStatusStyle(event.status)}`}
+              >
+                {event.status}
+              </span>
+            </div>
+            {event.registerLink && (
+              <a
+                href={event.registerLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-blue-600 hover:underline"
+              >
+                Register Here
+              </a>
+            )}
+          </div>
         </div>
 
-        <div className="mb-4 mt-2 flex justify-center gap-4 px-6">
+        <div className="flex gap-4 border-t border-orange-100 px-6 py-4">
           <button
-            className="rounded-md bg-yellow-500 px-5 py-2 text-sm text-white transition hover:bg-yellow-600"
             onClick={() => setEditEvent(event)}
+            className="rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-600"
           >
             Edit
           </button>
           <button
-            className="rounded-md bg-red-500 px-5 py-2 text-sm text-white transition hover:bg-red-600"
             onClick={() => onDeleteEvent(event.id)}
+            className="rounded-full bg-red-500 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-red-600"
           >
             Delete
           </button>

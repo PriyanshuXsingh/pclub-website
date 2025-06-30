@@ -55,7 +55,7 @@ export default function AdminPage() {
 
   const onRejectUser = async (id: string) => {
     try {
-      await axios.post("/api/admin/reject_user", { id })
+      await axios.put("/api/admin/reject_user", { id })
       toast.error("User rejected")
       fetchData() // After we approve or reject a user, our backend (database) changes, hence reload the latest user list
     } catch (error: any) {
@@ -68,27 +68,44 @@ export default function AdminPage() {
     actions,
   }) => {
     return (
-      <div className="w-full max-w-md rounded-xl bg-white p-4 shadow-md">
-        <p>
-          <strong>Name:</strong> {user.name || "Unknown"}
-        </p>
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-        <p>
-          <strong>Role:</strong> {user.role}
-        </p>
+      <div className="relative w-full max-w-md rounded-2xl border border-orange-200 bg-white/60 p-6 shadow-xl backdrop-blur-md transition duration-300 hover:scale-[1.02]">
+        <div className="absolute right-3 top-3 text-xs text-gray-400">
+          {new Date(user.createdAt).toLocaleDateString()}
+        </div>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-center gap-2 text-gray-700">
+            <span className="text-lg font-semibold text-orange-700">👤</span>
+            <span>
+              <span className="font-semibold text-gray-900">Name:</span>{" "}
+              {user.name || "Unknown"}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <span className="text-lg font-semibold text-orange-700">✉️</span>
+            <span>
+              <span className="font-semibold text-gray-900">Email:</span>{" "}
+              {user.email}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <span className="text-lg font-semibold text-orange-700">🔑</span>
+            <span>
+              <span className="font-semibold text-gray-900">Role:</span>{" "}
+              {user.role}
+            </span>
+          </div>
+        </div>
         {actions && (
-          <div className="mt-4 flex gap-4">
+          <div className="mt-6 flex gap-4">
             <button
               onClick={() => onApproveUser(user.id)}
-              className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+              className="flex-1 rounded-xl bg-green-500 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600"
             >
               Approve
             </button>
             <button
               onClick={() => onRejectUser(user.id)}
-              className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+              className="flex-1 rounded-xl bg-red-500 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-red-600"
             >
               Reject
             </button>
@@ -99,41 +116,55 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-8">
-      <section className="mb-12 w-full max-w-5xl">
-        <h2 className="mb-4 text-xl font-semibold">Pending Requests</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {pendingUser.length ? (
-            pendingUser.map((user) => (
-              <Card key={user.id} user={user} actions />
-            ))
-          ) : (
-            <p className="col-span-full">No pending requests</p>
-          )}
-        </div>
-      </section>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-orange-50 to-rose-100 px-6 py-12">
+      <div className="mx-auto w-full max-w-6xl space-y-16">
+        <section>
+          <h2 className="mb-6 border-l-4 border-orange-400 pl-4 text-3xl font-bold tracking-tight text-orange-900">
+            Pending Requests
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {pendingUser.length ? (
+              pendingUser.map((user) => (
+                <Card key={user.id} user={user} actions />
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-600">
+                No pending requests
+              </p>
+            )}
+          </div>
+        </section>
 
-      <section className="mb-12 w-full max-w-5xl">
-        <h2 className="mb-4 text-xl font-semibold">Approved Admins</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {approveUser.length ? (
-            approveUser.map((user) => <Card key={user.id} user={user} />)
-          ) : (
-            <p className="col-span-full">No admins yet</p>
-          )}
-        </div>
-      </section>
+        <section>
+          <h2 className="mb-6 border-l-4 border-orange-400 pl-4 text-3xl font-bold tracking-tight text-orange-900">
+            Approved Admins
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {approveUser.length ? (
+              approveUser.map((user) => <Card key={user.id} user={user} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-600">
+                No admins yet
+              </p>
+            )}
+          </div>
+        </section>
 
-      <section className="w-full max-w-5xl">
-        <h2 className="mb-4 text-xl font-semibold">Rejected Users</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rejectUser.length ? (
-            rejectUser.map((user) => <Card key={user.id} user={user} />)
-          ) : (
-            <p className="col-span-full">No rejected users</p>
-          )}
-        </div>
-      </section>
+        <section>
+          <h2 className="mb-6 border-l-4 border-orange-400 pl-4 text-3xl font-bold tracking-tight text-orange-900">
+            Rejected Users
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {rejectUser.length ? (
+              rejectUser.map((user) => <Card key={user.id} user={user} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-600">
+                No rejected users
+              </p>
+            )}
+          </div>
+        </section>
+      </div>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { getAuthSession } from "@/lib/auth"
 
 const prisma = new PrismaClient()
 
-export async function POST(req: NextRequest) {
+export async function PUT(req: NextRequest) {
   try {
     const session = await getAuthSession()
 
@@ -26,42 +26,34 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const body = await req.json()
     const {
+      id,
       title,
       desc,
-      eventType,
-      bannerImage,
-      registerLink,
-      status,
-      organizer,
-      speaker,
-      recordLink,
-      date,
-      location,
-    } = body
+      repolink,
+      livelink,
+      contributors,
+      techstack,
+      image,
+    } = await req.json()
 
-    const correctStatus =
-      status.charAt(0).toUpperCase() + status.slice(1).toLowerCase() // e.g.- Upcoming
-
-    const newEvent = await prisma.event.create({
+    const updatedProject = await prisma.project.update({
+      where: { id },
       data: {
         title,
         desc,
-        eventType,
-        bannerImage,
-        registerLink,
-        status: correctStatus as any,
-        organizer,
-        speaker,
-        recordLink,
-        date: new Date(date),
-        location,
+        repolink,
+        livelink,
+        contributors,
+        techstack,
+        image,
       },
     })
-
-    return NextResponse.json(newEvent, { status: 200 })
+    return NextResponse.json(updatedProject, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json(
+      { error: "Failed to update project" },
+      { status: 500 },
+    )
   }
 }

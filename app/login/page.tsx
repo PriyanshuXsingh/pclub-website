@@ -51,23 +51,23 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+    <div className="flex h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 px-4 py-12">
+      <div className="w-full max-w-md rounded-3xl border border-white/20 bg-white/40 p-10 shadow-2xl backdrop-blur-sm">
+        <h2 className="mb-6 text-center text-4xl font-bold tracking-tight text-amber-900">
           Login
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {/* Email Input */}
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-800"
             >
               Email
             </label>
             <input
-              className="mt-1 w-full rounded-lg border px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 w-full rounded-lg border border-orange-300 bg-white/80 px-4 py-2 shadow-inner focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300"
               type="email"
               id="email"
               value={user.email}
@@ -80,12 +80,12 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-800"
             >
               Password
             </label>
             <input
-              className="mt-1 w-full rounded-lg border px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 w-full rounded-lg border border-orange-300 bg-white/80 px-4 py-2 shadow-inner focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300"
               type="password"
               id="password"
               value={user.password}
@@ -97,7 +97,7 @@ export default function LoginPage() {
           {/* Manual Login */}
           <button
             disabled={load}
-            className="w-full rounded-lg bg-blue-600 py-2 font-semibold text-white transition duration-200 hover:bg-blue-700"
+            className="w-full rounded-xl bg-gradient-to-r from-orange-500 to-red-500 py-2 font-semibold text-white shadow-md transition duration-200 hover:from-orange-600 hover:to-red-600 disabled:opacity-60"
             onClick={onLogin}
           >
             {load ? "Processing..." : "Login"}
@@ -106,10 +106,10 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="relative py-2">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
+              <div className="w-full border-t border-orange-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">OR</span>
+              <span className="bg-white/80 px-2 text-orange-500">OR</span>
             </div>
           </div>
 
@@ -118,7 +118,7 @@ export default function LoginPage() {
             onClick={() =>
               signIn("google", { callbackUrl: "/admin?login=success" })
             }
-            className="w-full rounded-lg bg-red-600 py-2 font-semibold text-white transition duration-200 hover:bg-red-700"
+            className="w-full rounded-xl bg-red-600 py-2 font-semibold text-white shadow-md transition duration-200 hover:bg-red-700"
           >
             Sign in with Google
           </button>
@@ -128,7 +128,7 @@ export default function LoginPage() {
             onClick={() =>
               signIn("github", { callbackUrl: "/admin?login=success" })
             }
-            className="w-full rounded-lg bg-gray-800 py-2 font-semibold text-white transition duration-200 hover:bg-gray-900"
+            className="w-full rounded-xl bg-gray-900 py-2 font-semibold text-white shadow-md transition duration-200 hover:bg-gray-800"
           >
             Sign in with GitHub
           </button>

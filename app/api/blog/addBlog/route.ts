@@ -26,41 +26,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const body = await req.json()
-    const {
-      title,
-      desc,
-      eventType,
-      bannerImage,
-      registerLink,
-      status,
-      organizer,
-      speaker,
-      recordLink,
-      date,
-      location,
-    } = body
+    const res = await req.json()
+    const { title, desc, content, coverImage, tags, author, status } = res
 
-    const correctStatus =
-      status.charAt(0).toUpperCase() + status.slice(1).toLowerCase() // e.g.- Upcoming
+    // const correctStatus = status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()
 
-    const newEvent = await prisma.event.create({
+    let publishedAt = null
+    if (status === "PUBLISHED") {
+      publishedAt = new Date().toISOString()
+    }
+
+    const newBlog = await prisma.blog.create({
       data: {
         title,
         desc,
-        eventType,
-        bannerImage,
-        registerLink,
-        status: correctStatus as any,
-        organizer,
-        speaker,
-        recordLink,
-        date: new Date(date),
-        location,
+        content,
+        coverImage,
+        tags,
+        author,
+        status,
+        publishedAt,
       },
     })
-
-    return NextResponse.json(newEvent, { status: 200 })
+    return NextResponse.json(newBlog, { status: 200 })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }

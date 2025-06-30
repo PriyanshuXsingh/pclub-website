@@ -30,7 +30,6 @@ export default function MemberPage() {
   const [addMember, setAddMember] = React.useState<Member | null>(null)
   const [search, setSearch] = React.useState("")
 
-  // fetching the member list on page load
   useEffect(() => {
     const fetchMembers = async () => {
       try {
@@ -45,16 +44,7 @@ export default function MemberPage() {
 
   useEffect(() => {
     const isModalOpen = !!addMember || !!editMember
-
-    if (isModalOpen) {
-      // Disable scroll
-      document.body.style.overflow = "hidden"
-    } else {
-      // Re-enable scroll
-      document.body.style.overflow = "auto"
-    }
-
-    // Cleanup on unmount
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto"
     return () => {
       document.body.style.overflow = "auto"
     }
@@ -62,11 +52,10 @@ export default function MemberPage() {
 
   const onDeleteMember = async (memberID: string) => {
     try {
-      const deletedUser = await axios.delete("/api/member/deleteMember", {
+      await axios.delete("/api/member/deleteMember", {
         data: { id: memberID },
       })
       toast.success("Member deleted successfully")
-      // update the members state -- update UI of members page
       setMembers((prev) => prev.filter((m) => m.id !== memberID))
     } catch (error: any) {
       console.log(error.message)
@@ -78,8 +67,6 @@ export default function MemberPage() {
     setMembers((prev) => [...prev, newMember])
   }
 
-  // used after editing a member in the modal, to update the frontend state so that the changes immediately reflect in the UI without reloading the page
-  // prev is the previous list of all members (an array)
   const handleEditMember = async (updatedMember: Member) => {
     setMembers((prev) =>
       prev.map((m) => (m.id === updatedMember.id ? updatedMember : m)),
@@ -88,33 +75,34 @@ export default function MemberPage() {
 
   const Card: React.FC<{ member: Member }> = ({ member }) => {
     return (
-      <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl transition-all duration-300 hover:scale-105">
-        <div className="flex flex-col items-center space-y-4 px-6 py-6 text-center text-gray-800">
+      <div className="group flex flex-col overflow-hidden rounded-3xl border border-orange-200 bg-white shadow-xl ring-1 ring-orange-100 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]">
+        <div className="flex flex-col items-center px-6 py-8 text-center">
           {member.profile_picture && (
             <Image
               src={member.profile_picture}
               alt={`${member.name}'s profile`}
-              width={96}
-              height={96}
-              className="h-24 w-24 rounded-full border-2 border-blue-500 object-cover"
+              width={100}
+              height={100}
+              className="h-24 w-24 rounded-full border-2 border-orange-500 object-cover shadow-md"
             />
           )}
-
-          <div className="space-y-1">
-            <p className="text-lg font-semibold">{member.name}</p>
-            <p className="text-sm text-gray-500">{member.roll_no}</p>
-            <p className="text-sm text-gray-500">{member.email}</p>
-            <p className="text-sm">
+          <div className="space-y-1 text-sm text-gray-700">
+            <p className="text-lg font-semibold text-orange-900">
+              {member.name}
+            </p>
+            <p>{member.roll_no}</p>
+            <p>{member.email}</p>
+            <p>
               {member.branch} - Year {member.year}
             </p>
           </div>
-
-          <div className="mt-3 flex gap-4 text-xl text-blue-600">
+          <div className="mt-4 flex gap-5 text-xl">
             {member.socials.linkedin && (
               <a
                 href={member.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-[#0A66C2] hover:opacity-80"
               >
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
@@ -124,6 +112,7 @@ export default function MemberPage() {
                 href={member.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-black hover:opacity-80"
               >
                 <FontAwesomeIcon icon={faGithub} />
               </a>
@@ -131,15 +120,15 @@ export default function MemberPage() {
           </div>
         </div>
 
-        <div className="mt-2 flex justify-center gap-4 px-6 pb-5">
+        <div className="flex justify-center gap-4 border-t border-orange-100 px-6 pb-4">
           <button
-            className="rounded-md bg-yellow-500 px-5 py-2 text-sm text-white transition hover:bg-yellow-600"
+            className="rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-600"
             onClick={() => setEditMember(member)}
           >
             Edit
           </button>
           <button
-            className="rounded-md bg-red-500 px-5 py-2 text-sm text-white transition hover:bg-red-600"
+            className="rounded-full bg-red-500 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-red-600"
             onClick={() => onDeleteMember(member.id)}
           >
             Delete
@@ -150,12 +139,11 @@ export default function MemberPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fdf3ef] to-[#e7dbdc] px-6 py-16 text-gray-900">
-      <div className="mx-auto max-w-7xl">
-        {/* Header buttons */}
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-orange-50 to-rose-100 px-6 py-16 text-gray-900">
+      <div className="mx-auto w-full max-w-7xl">
         <div className="mb-10 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <button
-            className="rounded-lg bg-[#ec684a] px-6 py-3 text-white shadow-md transition hover:bg-[#d65732]"
+            className="rounded-lg bg-orange-500 px-6 py-3 text-white shadow-md transition hover:bg-orange-600"
             onClick={() =>
               setAddMember({
                 id: "",
@@ -184,7 +172,6 @@ export default function MemberPage() {
           </div>
         </div>
 
-        {/* Member Cards Grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
           {members
             .filter((m) => m.name.toLowerCase().includes(search.toLowerCase()))

@@ -1,10 +1,10 @@
 import { PrismaClient } from "@/lib/generated/prisma"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { getAuthSession } from "@/lib/auth"
 
 const prisma = new PrismaClient()
 
-export async function GET() {
+export async function DELETE(req: NextRequest) {
   try {
     const session = await getAuthSession()
 
@@ -12,10 +12,12 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    // Get current user (admin making the request)
     const currentUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
 
+    // Allow only approved admins or root admins
     if (
       !currentUser ||
       !currentUser.approved ||
@@ -24,15 +26,16 @@ export async function GET() {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const rejectedUsers = await prisma.user.findMany({
-      where: {
-        role: "REJECTED_USER",
-        approved: false,
-      },
+    const res = await req.json()
+    const { id } = res
+    const deletedBlog = await prisma.blog.delete({
+      where: { id },
     })
-
-    return NextResponse.json(rejectedUsers)
+    return NextResponse.json(deletedBlog, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json(
+      { error: "Failed to delete blog" },
+      { status: 500 },
+    )
   }
 }

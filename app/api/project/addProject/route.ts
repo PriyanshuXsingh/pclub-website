@@ -1,5 +1,5 @@
 import { PrismaClient } from "@/lib/generated/prisma"
-import { NextResponse, NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { getAuthSession } from "@/lib/auth"
 
 const prisma = new PrismaClient()
@@ -26,42 +26,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const body = await req.json()
-    const {
-      title,
-      desc,
-      eventType,
-      bannerImage,
-      registerLink,
-      status,
-      organizer,
-      speaker,
-      recordLink,
-      date,
-      location,
-    } = body
+    const res = await req.json()
+    const { title, desc, repolink, livelink, contributors, techstack, image } =
+      res
 
-    const correctStatus =
-      status.charAt(0).toUpperCase() + status.slice(1).toLowerCase() // e.g.- Upcoming
-
-    const newEvent = await prisma.event.create({
+    const newProject = await prisma.project.create({
       data: {
         title,
         desc,
-        eventType,
-        bannerImage,
-        registerLink,
-        status: correctStatus as any,
-        organizer,
-        speaker,
-        recordLink,
-        date: new Date(date),
-        location,
+        repolink,
+        livelink,
+        contributors,
+        techstack,
+        image,
       },
     })
-
-    return NextResponse.json(newEvent, { status: 200 })
+    return NextResponse.json(newProject, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error("Add Project Error:", error.response?.data || error.message)
+    return NextResponse.json(
+      { error: "Failed to add project" },
+      { status: 500 },
+    )
   }
 }

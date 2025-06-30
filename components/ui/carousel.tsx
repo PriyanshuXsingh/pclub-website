@@ -2,6 +2,7 @@
 import { IconArrowNarrowRight } from "@tabler/icons-react"
 import { useState, useRef, useId, useEffect } from "react"
 import { Youtube, Github, ExternalLink } from "lucide-react"
+import Image from "next/image"
 
 interface SlideData {
   title: string
@@ -100,7 +101,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                 : "none",
           }}
         >
-          <img
+          <Image
             className="duration-600 absolute inset-0 h-[120%] w-[120%] object-cover opacity-100 transition-opacity ease-in-out"
             style={{
               opacity: current === index ? 1 : 0.5,

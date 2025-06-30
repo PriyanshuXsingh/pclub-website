@@ -70,10 +70,10 @@ export default function EditEventModal({ event, onClose, onEdit }: any) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className="relative max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-lg bg-white shadow-xl">
-        <div className="sticky top-0 z-10 flex items-center justify-between bg-white px-8 py-4 shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-800">Edit Event</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-orange-300 bg-white shadow-2xl">
+        <div className="flex items-center justify-between border-b border-orange-200 bg-orange-50 px-8 py-5">
+          <h2 className="text-2xl font-bold text-orange-800">Edit Event</h2>
           <button
             onClick={onClose}
             aria-label="Close"
@@ -163,13 +163,13 @@ export default function EditEventModal({ event, onClose, onEdit }: any) {
             />
 
             {load ? (
-              <div className="mt-4 flex justify-center">
+              <div className="flex justify-center">
                 <div className="h-6 w-6 animate-spin rounded-full border-4 border-orange-600 border-t-transparent"></div>
               </div>
             ) : (
               <button
                 type="submit"
-                className="w-full rounded-md bg-[#db6654] px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-[#c25345]"
+                className="w-full rounded-lg bg-orange-500 px-6 py-3 text-lg font-semibold text-white shadow-md transition hover:bg-orange-600"
               >
                 Save Changes
               </button>

@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-   output   = "../lib/generated/prisma"
+  output   = "../lib/generated/prisma"
 }
 
 datasource db {
@@ -40,6 +40,7 @@ enum Role {
   USER
   ADMIN
   ROOT_ADMIN
+  REJECTED_USER
 }
 
 model Account {
@@ -78,21 +79,19 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
 model Member {
-  id              String   @id @default(cuid())     // Unique identifier for each member - @id is used for primary key
+  id              String   @id @default(cuid()) // Unique identifier for each member - @id is used for primary key
   name            String
   email           String   @unique
   roll_no         String   @unique
   role            String?
   branch          String
   year            Int
-  socials         Json        // for key-value pairs
-  profile_picture String?    // Image URL
+  socials         Json // for key-value pairs
+  profile_picture String? // Image URL
   createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt      // Auto-updated on changes
+  updatedAt       DateTime @updatedAt // Auto-updated on changes
 }
-
 
 model Event {
   id           String   @id @default(cuid())
@@ -101,7 +100,7 @@ model Event {
   eventType    String[]
   registerLink String
   bannerImage  String?
-  status       Status     // single enum (not array)
+  status       Status // single enum (not array)
   organizer    String?
   speaker      String?
   recordLink   String?
@@ -115,4 +114,36 @@ enum Status {
   Upcoming
   Completed
   Cancelled
+}
+
+model Blog {
+  id          String     @id @default(cuid())
+  title       String
+  desc        String // show this at admin page
+  content     String // show at public blog page, not on admin
+  coverImage  String?
+  tags        String[] // e.g.- ai, ml, webd, ui/ux, data science
+  author      String?
+  status      BlogStatus @default(DRAFT)
+  publishedAt DateTime? // set this when status = PUBLISHED
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+enum BlogStatus {
+  PUBLISHED
+  DRAFT
+}
+
+model Project {
+  id           String   @id @default(cuid())
+  title        String   
+  desc         String   
+  repolink     String   
+  livelink     String?   
+  contributors String[]     // array of contributor names 
+  techstack    String[]     
+  image        String?      // project image
+  createdAt    DateTime @default(now()) 
+  updatedAt    DateTime @updatedAt 
 }

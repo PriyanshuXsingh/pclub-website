@@ -4,7 +4,7 @@ import { getAuthSession } from "@/lib/auth"
 
 const prisma = new PrismaClient()
 
-export async function POST(request: NextRequest) {
+export async function PUT(request: NextRequest) {
   try {
     const session = await getAuthSession()
 
@@ -28,15 +28,13 @@ export async function POST(request: NextRequest) {
 
     const { id } = await request.json()
 
-    // reject the user request and delete its entry from admin db
-    await prisma.user.delete({
+    // reject the user request and update its role entry to "REJECTED_USER"
+    await prisma.user.update({
       where: { id },
+      data: { approved: false, role: "REJECTED_USER" },
     })
 
-    return NextResponse.json(
-      { message: "User rejected and deleted" },
-      { status: 200 },
-    )
+    return NextResponse.json({ message: "User rejected" }, { status: 200 })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
