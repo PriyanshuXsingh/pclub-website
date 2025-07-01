@@ -93,7 +93,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         }}
       >
         <div
-          className="absolute left-0 top-0 h-full w-full overflow-hidden rounded-[1%] bg-[#1D1F2F] transition-all duration-150 ease-out"
+          className="relative left-0 top-0 h-full w-full overflow-hidden rounded-[1%] bg-[#1D1F2F] transition-all duration-150 ease-out"
           style={{
             transform:
               current === index
@@ -106,6 +106,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             style={{
               opacity: current === index ? 1 : 0.5,
             }}
+            fill
             alt={title}
             src={src}
             onLoad={imageLoaded}

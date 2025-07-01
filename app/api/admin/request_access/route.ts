@@ -7,25 +7,6 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getAuthSession()
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
-    // Fetch user from DB
-    const currentUser = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    })
-
-    if (
-      !currentUser ||
-      !currentUser.approved ||
-      (currentUser.role !== "ADMIN" && currentUser.role !== "ROOT_ADMIN")
-    ) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
-    }
-
     const reqBody = await request.json()
     const { name, email, password } = reqBody
 

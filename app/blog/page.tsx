@@ -6,7 +6,6 @@ import axios from "axios"
 import { NextResponse, NextRequest } from "next/server"
 import Image from "next/image"
 import Link from "next/link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AddBlogModal from "@/components/ui/AddBlogModal"
 import EditBlogModal from "@/components/ui/EditBlogModal"
 
