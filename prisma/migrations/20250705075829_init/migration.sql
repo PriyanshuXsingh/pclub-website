@@ -1,8 +1,11 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN', 'ROOT_ADMIN');
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN', 'ROOT_ADMIN', 'REJECTED_USER');
 
 -- CreateEnum
 CREATE TYPE "Status" AS ENUM ('Upcoming', 'Completed', 'Cancelled');
+
+-- CreateEnum
+CREATE TYPE "BlogStatus" AS ENUM ('PUBLISHED', 'DRAFT');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -92,6 +95,51 @@ CREATE TABLE "Event" (
     CONSTRAINT "Event_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Blog" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "desc" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "coverImage" TEXT,
+    "tags" TEXT[],
+    "author" TEXT,
+    "status" "BlogStatus" NOT NULL DEFAULT 'DRAFT',
+    "publishedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Blog_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Project" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "desc" TEXT NOT NULL,
+    "repolink" TEXT NOT NULL,
+    "livelink" TEXT,
+    "contributors" TEXT[],
+    "techstack" TEXT[],
+    "image" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Subscriber" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "isVerified" BOOLEAN NOT NULL DEFAULT false,
+    "verifiedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Subscriber_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -112,6 +160,12 @@ CREATE UNIQUE INDEX "Member_email_key" ON "Member"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Member_roll_no_key" ON "Member"("roll_no");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Subscriber_email_key" ON "Subscriber"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Subscriber_token_key" ON "Subscriber"("token");
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

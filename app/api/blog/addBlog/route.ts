@@ -1,6 +1,8 @@
 import { PrismaClient } from "@/lib/generated/prisma"
 import { NextResponse, NextRequest } from "next/server"
 import { getAuthSession } from "@/lib/auth"
+import { sendBlogPublishedMail } from "@/lib/mailer";
+
 
 const prisma = new PrismaClient()
 
@@ -46,8 +48,17 @@ export async function POST(req: NextRequest) {
         author,
         status,
         publishedAt,
+        
       },
-    })
+    });
+
+     /** 🔔  Trigger email blast only if published now */
+    if (newBlog.status === "PUBLISHED") {
+      // fire‑and‑forget; don’t block API response
+      sendBlogPublishedMail(newBlog).catch((err) =>
+        console.error("Email blast failed:", err),
+      );
+    }
     return NextResponse.json(newBlog, { status: 200 })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
