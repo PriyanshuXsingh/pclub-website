@@ -8,11 +8,11 @@ export default function FailPage() {
         </p>
         <a
           href="/subscribe"
-          className="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
+          className="inline-block rounded-lg bg-red-600 px-6 py-2 font-semibold text-white transition hover:bg-red-700"
         >
           Try Again
         </a>
       </div>
     </div>
-  );
+  )
 }
