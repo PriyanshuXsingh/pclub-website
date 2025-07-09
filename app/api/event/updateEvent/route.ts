@@ -55,8 +55,9 @@ export async function PUT(req: NextRequest) {
         status: correctStatus as any,
         speaker,
         date: new Date(date),
-        location,
         bannerImage,
+        location,
+        
       },
     })
     return NextResponse.json(updatedEvent, { status: 200 })

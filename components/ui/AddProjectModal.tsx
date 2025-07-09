@@ -191,7 +191,6 @@ export default function AddProjectModal({ project, onClose, onAdd }: any) {
               }
               className="w-full rounded-md border border-orange-600 px-5 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
-
             <div>
               <label className="mb-2 block font-medium text-gray-600">
                 Upload Project Image
