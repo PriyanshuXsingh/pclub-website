@@ -57,8 +57,13 @@ export default function BlogPage() {
         body: JSON.stringify({ email }),
       })
       const data = await res.json()
-      setMessage(data.msg || "Something went wrong.")
-      if (res.ok) setEmail("")
+        if (res.ok) {
+        toast.success(data.msg || "Subscribed successfully!")
+        setEmail("")
+      } else {
+        toast.error(data.msg || "Something went wrong.")
+      }
+
     } catch (error) {
       setMessage("Subscription failed. Try again.")
     }
@@ -146,9 +151,7 @@ export default function BlogPage() {
           </button>
         </form>
 
-        {message && (
-          <p className="mb-6 text-center text-sm text-pink-300">{message}</p>
-        )}
+       
 
         <div className="mb-10 flex animate-fade-in flex-wrap justify-center gap-3 delay-300">
           {["All", "AI", "ML", "WebDev", "Data Science"].map((tag) => (

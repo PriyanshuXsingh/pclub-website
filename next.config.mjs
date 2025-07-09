@@ -20,11 +20,15 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com", // ✅ Cloudinary added
+        hostname: "res.cloudinary.com",
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",    // Cloudinary added
+        hostname: "i.ibb.co", 
+      },
+      {
+        protocol: "https",
+        hostname: "ibb.co", 
       },
     ],
   },
